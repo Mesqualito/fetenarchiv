@@ -2,7 +2,7 @@ plugins {
     id 'org.springframework.boot' version '2.1.3.RELEASE'
     id 'java'
 }
-
+// see: https://www.baeldung.com/spring-boot-gradle-plugin
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.eigenbaumarkt'
@@ -11,9 +11,4 @@ sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
-}
-
-dependencies {
-    implementation 'org.springframework.boot:spring-boot-starter'
-    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }

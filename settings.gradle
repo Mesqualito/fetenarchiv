@@ -4,3 +4,6 @@ pluginManagement {
     }
 }
 rootProject.name = 'fetenarchiv'
+include 'fetenarchiv-daten'
+include 'fetenarchiv-web'
+
