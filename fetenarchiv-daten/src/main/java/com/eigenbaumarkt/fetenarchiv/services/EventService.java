@@ -2,13 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.services;
 
 import com.eigenbaumarkt.fetenarchiv.model.Event;
 
-import java.util.Set;
 
-public interface EventService {
+public interface EventService extends CrudService<Event, Long> {
 
-    Event findById(Long id);
-
-    Event save(Event event);
-
-    Set<Event> findAll();
 }
