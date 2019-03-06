@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class RemoteContact {
+public class RemoteContact extends BaseEntity {
 
     private String title;
     private RcType rcType;

@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class RcType {
+public class RcType extends BaseEntity {
 
     private String title;
     private LocalDate creationStamp;

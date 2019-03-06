@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Event {
+public class Event extends BaseEntity {
 
     private String title;
     private String description;

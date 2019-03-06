@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Media {
+public class Media extends BaseEntity {
 
     private String title;
     private String description;

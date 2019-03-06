@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Place {
+public class Place extends BaseEntity {
 
     private String title;
     private String zipCode;
