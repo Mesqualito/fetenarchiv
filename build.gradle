@@ -16,3 +16,7 @@ repositories {
 
 dependencies {
 }
+
+springBoot {
+    mainClassName = 'com.eigenbaumarkt.fetenarchiv.FetenarchivApplication'
+}
