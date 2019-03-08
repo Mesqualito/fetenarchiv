@@ -1,16 +1,24 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Owner;
-import com.eigenbaumarkt.fetenarchiv.services.CrudService;
+import com.eigenbaumarkt.fetenarchiv.services.OwnerService;
 
 import java.util.Set;
 
-public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements CrudService<Owner, Long> {
+public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements OwnerService {
 
     @Override
     public Set<Owner> findAll() {
         // 'super' => 'AbstractMapService', nicht 'OwnerServiceMap'
         return super.findAll();
+    }
+
+    @Override
+    public Set<Owner> findByLastName(String lastName) {
+
+        // TODO
+        return null;
+
     }
 
     @Override

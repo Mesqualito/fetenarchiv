@@ -1,11 +1,12 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Media;
-import com.eigenbaumarkt.fetenarchiv.services.CrudService;
+import com.eigenbaumarkt.fetenarchiv.services.MediaService;
 
 import java.util.Set;
 
-public class MediaServiceMap extends AbstractMapService<Media, Long> implements CrudService<Media, Long> {
+public class MediaServiceMap extends AbstractMapService<Media, Long> implements MediaService {
+
 
     @Override
     public Set<Media> findAll() {

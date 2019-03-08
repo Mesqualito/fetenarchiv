@@ -3,15 +3,33 @@ plugins {
     id 'net.researchgate.release' version '2.8.0'
     // see: https://www.baeldung.com/spring-boot-gradle-plugin
     id 'io.spring.dependency-management' version '1.0.7.RELEASE'
-    id 'java'
+    id 'base'
 }
 
 group = 'com.eigenbaumarkt'
 version = '0.0.1-SNAPSHOT'
-sourceCompatibility = '1.8'
 
 repositories {
     mavenCentral()
+}
+
+subprojects {
+    // generate an executable jar file
+    apply plugin: 'java'
+
+    // TODO
+    // thin jar's, in Maven:
+    // <properties>
+    //        <spring-boot.repackage.skip>true</spring-boot.repackage.skip>
+    // </properties>
+    // see (perhaps): https://www.baeldung.com/spring-boot-thin-jar
+
+    repositories {
+        mavenCentral()
+    }
+
+    sourceCompatibility = 1.8
+
 }
 
 dependencies {
