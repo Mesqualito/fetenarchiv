@@ -11,7 +11,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
 
     @Override
     public Set<Owner> findAll() {
-        // 'super' => 'AbstractMapService', nicht 'OwnerServiceMap'
         return super.findAll();
     }
 
