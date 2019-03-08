@@ -4,12 +4,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping({"/media"})
-public class MediaController {
+@RequestMapping({"/owner"})
+public class OwnerController {
 
     @RequestMapping({"", "/", "/index", "/index.htm", "/index.html"})
-    public String listMedia(){
+    public String listOwner(){
 
-        return "media/index";
+        return "owner/index";
     }
 }
