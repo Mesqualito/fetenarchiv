@@ -9,8 +9,24 @@
 </head>
 
 <body>
+<!--/*@thymesVar id="medium" type="com.eigenbaumarkt.fetenarchiv.model.Media"*/-->
 <h1 th:text="'Media Index Seite'">Index Page</h1>
 
-
+<table>
+    <thead>
+    <tr>
+        <th>Id</th>
+        <th>Bezeichnung</th>
+        <th>Beschreibung</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="medium : ${media}">
+        <td th:text="${medium.id}">1</td>
+        <td th:text="${medium.title}">default-Eintrag</td>
+        <td th:text="${medium.description}">default-Eintrag</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

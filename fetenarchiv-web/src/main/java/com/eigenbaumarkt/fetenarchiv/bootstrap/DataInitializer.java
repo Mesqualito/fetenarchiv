@@ -1,8 +1,7 @@
 package com.eigenbaumarkt.fetenarchiv.bootstrap;
 
 import com.eigenbaumarkt.fetenarchiv.model.*;
-import com.eigenbaumarkt.fetenarchiv.services.MediaService;
-import com.eigenbaumarkt.fetenarchiv.services.OwnerService;
+import com.eigenbaumarkt.fetenarchiv.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -12,11 +11,20 @@ import java.time.LocalDate;
 public class DataInitializer implements CommandLineRunner {
 
     private final OwnerService ownerService;
+    private final AddressService addressService;
+    private final PlaceService placeService;
     private final MediaService mediaService;
+    private final MediaTypeService mediaTypeService;
 
-    public DataInitializer(OwnerService ownerService, MediaService mediaService) {
+
+    public DataInitializer(OwnerService ownerService, AddressService addressService,
+                           PlaceService placeService, MediaService mediaService,
+                           MediaTypeService mediaTypeService) {
         this.ownerService = ownerService;
+        this.addressService = addressService;
+        this.placeService = placeService;
         this.mediaService = mediaService;
+        this.mediaTypeService = mediaTypeService;
     }
 
     @Override
@@ -45,11 +53,17 @@ public class DataInitializer implements CommandLineRunner {
         place1.setRegion("Buvuria");
         place1.setId(1L);
 
+        placeService.save(place1);
+
         address1.setPlace(place1);
+
+        addressService.save(address1);
 
         owner1.setAddress(address1);
 
         owner1.setId(1L);
+
+        ownerService.save(owner1);
 
         Owner owner2 = new Owner();
         date = LocalDate.now();
@@ -74,10 +88,16 @@ public class DataInitializer implements CommandLineRunner {
         place2.setRegion("Bayern");
         place2.setId(2L);
 
+        placeService.save(place2);
+
         address2.setPlace(place2);
+
+        addressService.save(address2);
 
         owner2.setAddress(address2);
         owner2.setId(2L);
+
+        ownerService.save(owner2);
 
         System.out.println("Zwei \'Owner\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
         System.out.println(owner1.getFirstName() + " " + owner1.getLastName() + ", " + owner2.getFirstName() + " " + owner2.getLastName());
@@ -96,9 +116,13 @@ public class DataInitializer implements CommandLineRunner {
         mediaType1.setDescription("Bilddateien in verschiedenen Formaten");
         mediaType1.setId(1L);
 
+        mediaTypeService.save(mediaType1);
+
         media1.setMediaType(mediaType1);
         media1.setOwner(owner1);
         media1.setId(1L);
+
+        mediaService.save(media1);
 
         Media media2 = new Media();
         date = LocalDate.now();
@@ -113,9 +137,13 @@ public class DataInitializer implements CommandLineRunner {
         mediaType2.setDescription("Filmdateien in verschiedenen Formaten");
         mediaType2.setId(2L);
 
+        mediaTypeService.save(mediaType2);
+
         media2.setMediaType(mediaType2);
         media2.setOwner(owner2);
         media2.setId(2L);
+
+        mediaService.save(media2);
 
         System.out.println("Zwei \'Media\'-Objekte mit jeweils individuellem Typ erstellt und geladen!");
 
