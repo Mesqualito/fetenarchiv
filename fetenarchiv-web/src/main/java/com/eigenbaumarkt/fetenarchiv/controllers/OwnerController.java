@@ -1,9 +1,12 @@
 package com.eigenbaumarkt.fetenarchiv.controllers;
 
+import com.eigenbaumarkt.fetenarchiv.model.Owner;
 import com.eigenbaumarkt.fetenarchiv.services.OwnerService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.Set;
 
 @RequestMapping({"/owners"})
 @Controller
@@ -28,7 +31,8 @@ public class OwnerController {
         // Parameter:
         // - die Bezeichnung einer property im Modell
         // - die angewandte Methode des Service hinter der Bezeichnung
-        model.addAttribute("owners", ownerService.findAll());
+        Set<Owner> owners = ownerService.findAll();
+        model.addAttribute("owners", owners);
 
         return "owners/index";
     }
