@@ -3,6 +3,10 @@ package com.eigenbaumarkt.fetenarchiv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
+// @SpringBootApplication includes:
+// - @Configuration
+// - @ComponentScan(basePackages = {"com.eigenbaumarkt.fetenarchiv"})
+// - @EnableAutoConfiguration
 @SpringBootApplication
 public class FetenarchivApplication {
 
