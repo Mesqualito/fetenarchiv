@@ -2,9 +2,11 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Media;
 import com.eigenbaumarkt.fetenarchiv.services.MediaService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class MediaServiceMap extends AbstractMapService<Media, Long> implements MediaService {
 
 

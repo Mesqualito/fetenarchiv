@@ -3,8 +3,6 @@ package com.eigenbaumarkt.fetenarchiv.bootstrap;
 import com.eigenbaumarkt.fetenarchiv.model.*;
 import com.eigenbaumarkt.fetenarchiv.services.MediaService;
 import com.eigenbaumarkt.fetenarchiv.services.OwnerService;
-import com.eigenbaumarkt.fetenarchiv.services.map.MediaServiceMap;
-import com.eigenbaumarkt.fetenarchiv.services.map.OwnerServiceMap;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
@@ -19,10 +17,15 @@ public class DataInitializer implements CommandLineRunner {
     private final OwnerService ownerService;
     private final MediaService mediaService;
 
-    public DataInitializer() {
+    // das Spring framework übernimmt:
+    // "autowiring" der benötigten Klassen "by constructor":
+    // die Interfaces zu den verschiedenen Service-Implementierungen
+    // (Map, Speicherung auf Dateiebene, Datenablage in verschiedenen Datenbanken)
+    // werden dem 'DataInitializer'-Objekt zur Verfügung gestellt
+    public DataInitializer(OwnerService ownerService, MediaService mediaService) {
+        this.ownerService = ownerService;
 
-        ownerService = new OwnerServiceMap();
-        mediaService = new MediaServiceMap();
+        this.mediaService = mediaService;
     }
 
     @Override

@@ -2,9 +2,11 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Event;
 import com.eigenbaumarkt.fetenarchiv.services.CrudService;
+import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
+@Service
 public class EventServiceMap extends AbstractMapService<Event, Long> implements CrudService<Event, Long> {
 
     @Override
