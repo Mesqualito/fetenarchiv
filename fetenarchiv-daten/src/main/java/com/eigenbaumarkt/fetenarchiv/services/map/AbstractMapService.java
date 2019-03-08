@@ -2,11 +2,9 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.BaseEntity;
 
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
-import java.util.Set;
+import java.util.*;
 
+// Objekt und ID, die durch die beiden Generics vorgegeben sind, müssen 'BaseEntity' bzw. 'Long' erweitern
 public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
 
     protected Map<Long, T> map = new HashMap<>();
@@ -19,8 +17,16 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
         return map.get(id);
     }
 
-    T save(ID id, T object){
-        map.put(id, object);
+    T save(T object){
+
+        if(object != null){
+            if(object.getId() == null){
+                object.setId(getNextId());
+            }
+            map.put(object.getId(), object);
+        } else {
+            throw new RuntimeException("Das zu sichernde Objekt darf nicht null sein!");
+        }
         return object;
     }
 
@@ -30,6 +36,19 @@ public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> 
 
     void delete(T object){
         map.entrySet().removeIf(entry -> entry.getValue().equals(object));
+    }
+
+    private Long getNextId(){
+
+        Long nextId = null;
+
+        try {
+            nextId = Collections.max(map.keySet()) + 1;
+        } catch (NoSuchElementException e) {
+            nextId = 1L;
+        }
+
+        return nextId;
     }
 
 }

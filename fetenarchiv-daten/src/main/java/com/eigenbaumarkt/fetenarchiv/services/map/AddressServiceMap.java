@@ -21,7 +21,7 @@ public class AddressServiceMap extends AbstractMapService<Address, Long> impleme
 
     @Override
     public Address save(Address address) {
-        return super.save(address.getId(), address);
+        return super.save(address);
     }
 
     @Override

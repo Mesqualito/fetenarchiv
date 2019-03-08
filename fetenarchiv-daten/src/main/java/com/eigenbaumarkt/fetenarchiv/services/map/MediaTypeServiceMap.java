@@ -21,7 +21,7 @@ public class MediaTypeServiceMap extends AbstractMapService<MediaType, Long> imp
 
     @Override
     public MediaType save(MediaType mediaType) {
-        return super.save(mediaType.getId(), mediaType);
+        return super.save(mediaType);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class PlaceServiceMap extends AbstractMapService<Place, Long> implements 
 
     @Override
     public Place save(Place place) {
-        return super.save(place.getId(), place);
+        return super.save(place);
     }
 
     @Override

@@ -21,7 +21,7 @@ public class MediaServiceMap extends AbstractMapService<Media, Long> implements 
 
     @Override
     public Media save(Media media) {
-        return super.save(media.getId(), media);
+        return super.save(media);
     }
 
     @Override

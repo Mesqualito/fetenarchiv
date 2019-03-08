@@ -21,7 +21,7 @@ public class EventServiceMap extends AbstractMapService<Event, Long> implements 
 
     @Override
     public Event save(Event event) {
-        return super.save(event.getId(), event);
+        return super.save(event);
     }
 
     @Override

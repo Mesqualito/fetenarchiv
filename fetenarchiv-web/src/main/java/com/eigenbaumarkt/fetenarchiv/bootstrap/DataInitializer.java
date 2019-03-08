@@ -42,7 +42,6 @@ public class DataInitializer implements CommandLineRunner {
         address1.setLastUpdatedStamp(date);
         address1.setStreet("Wollinger Weg");
         address1.setNumber("23");
-        address1.setId(1L);
 
         Place place1 = new Place();
         place1.setCreationStamp(date);
@@ -51,7 +50,6 @@ public class DataInitializer implements CommandLineRunner {
         place1.setZipCode("83H-25");
         place1.setLand("Deutschland");
         place1.setRegion("Buvuria");
-        place1.setId(1L);
 
         placeService.save(place1);
 
@@ -60,8 +58,6 @@ public class DataInitializer implements CommandLineRunner {
         addressService.save(address1);
 
         owner1.setAddress(address1);
-
-        owner1.setId(1L);
 
         ownerService.save(owner1);
 
@@ -77,7 +73,6 @@ public class DataInitializer implements CommandLineRunner {
         address2.setLastUpdatedStamp(date);
         address2.setStreet("Butzenbergstr.");
         address2.setNumber("5");
-        address2.setId(2L);
 
         Place place2 = new Place();
         place2.setCreationStamp(date);
@@ -86,7 +81,6 @@ public class DataInitializer implements CommandLineRunner {
         place2.setZipCode("86774");
         place2.setLand("Deutschland");
         place2.setRegion("Bayern");
-        place2.setId(2L);
 
         placeService.save(place2);
 
@@ -95,7 +89,6 @@ public class DataInitializer implements CommandLineRunner {
         addressService.save(address2);
 
         owner2.setAddress(address2);
-        owner2.setId(2L);
 
         ownerService.save(owner2);
 
@@ -114,13 +107,11 @@ public class DataInitializer implements CommandLineRunner {
         mediaType1.setLastUpdatedStamp(date);
         mediaType1.setTitle("Bilddatei");
         mediaType1.setDescription("Bilddateien in verschiedenen Formaten");
-        mediaType1.setId(1L);
 
         mediaTypeService.save(mediaType1);
 
         media1.setMediaType(mediaType1);
         media1.setOwner(owner1);
-        media1.setId(1L);
 
         mediaService.save(media1);
 
@@ -135,18 +126,15 @@ public class DataInitializer implements CommandLineRunner {
         mediaType2.setLastUpdatedStamp(date);
         mediaType2.setTitle("Filmdatei");
         mediaType2.setDescription("Filmdateien in verschiedenen Formaten");
-        mediaType2.setId(2L);
 
         mediaTypeService.save(mediaType2);
 
         media2.setMediaType(mediaType2);
         media2.setOwner(owner2);
-        media2.setId(2L);
 
         mediaService.save(media2);
 
         System.out.println("Zwei \'Media\'-Objekte mit jeweils individuellem Typ erstellt und geladen!");
-
 
     }
 }
