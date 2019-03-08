@@ -16,7 +16,6 @@ public class DataInitializer implements CommandLineRunner {
 
     public DataInitializer(OwnerService ownerService, MediaService mediaService) {
         this.ownerService = ownerService;
-
         this.mediaService = mediaService;
     }
 
@@ -80,7 +79,8 @@ public class DataInitializer implements CommandLineRunner {
         owner2.setAddress(address2);
         owner2.setId(2L);
 
-        System.out.println("Zwei \'Owner\'-Objekte mit jeweils individuellen Adressen erstellt und geladen!");
+        System.out.println("Zwei \'Owner\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
+        System.out.println(owner1.getFirstName() + " " + owner1.getLastName() + ", " + owner2.getFirstName() + " " + owner2.getLastName());
 
 
         Media media1 = new Media();

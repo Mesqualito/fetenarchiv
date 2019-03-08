@@ -15,14 +15,6 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     }
 
     @Override
-    public Set<Owner> findByLastName(String lastName) {
-
-        // TODO
-        return null;
-
-    }
-
-    @Override
     public Owner findById(Long id) {
         return super.findById(id);
     }
@@ -41,4 +33,13 @@ public class OwnerServiceMap extends AbstractMapService<Owner, Long> implements 
     public void deleteById(Long id) {
         super.deleteById(id);
     }
+
+    @Override
+    public Set<Owner> findByLastName(String lastName) {
+
+        // TODO
+        return null;
+
+    }
+
 }

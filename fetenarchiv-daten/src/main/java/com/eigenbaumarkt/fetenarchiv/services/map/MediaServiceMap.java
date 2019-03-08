@@ -9,7 +9,6 @@ import java.util.Set;
 @Service
 public class MediaServiceMap extends AbstractMapService<Media, Long> implements MediaService {
 
-
     @Override
     public Set<Media> findAll() {
         return super.findAll();
