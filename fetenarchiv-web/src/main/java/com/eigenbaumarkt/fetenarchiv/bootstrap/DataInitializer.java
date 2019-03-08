@@ -8,20 +8,12 @@ import org.springframework.stereotype.Component;
 
 import java.time.LocalDate;
 
-// Spring-spezifische Lösung: 'DataInitializer' als Spring-Bean,
-// 'CommandLineRunner'-Implementation zur automatischen Ausführung
-// direkt nach dem erfolgreichem Start der Applikation
 @Component
 public class DataInitializer implements CommandLineRunner {
 
     private final OwnerService ownerService;
     private final MediaService mediaService;
 
-    // das Spring framework übernimmt:
-    // "autowiring" der benötigten Klassen "by constructor":
-    // die Interfaces zu den verschiedenen Service-Implementierungen
-    // (Map, Speicherung auf Dateiebene, Datenablage in verschiedenen Datenbanken)
-    // werden dem 'DataInitializer'-Objekt zur Verfügung gestellt
     public DataInitializer(OwnerService ownerService, MediaService mediaService) {
         this.ownerService = ownerService;
 
