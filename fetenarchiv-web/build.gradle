@@ -1,5 +1,9 @@
 buildscript {
-    ext { springBootVersion = '2.1.3.RELEASE' }
+    ext {
+        springBootVersion = '2.1.3.RELEASE'
+        versionJQuery = '3.3.1-2'
+        versionBootstrap = '4.3.1'
+    }
     repositories {
         mavenCentral()
         jcenter()
@@ -22,24 +26,17 @@ apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
 apply plugin: 'wro4j'
 
-sourceCompatibility = 1.8
-version = '1.8.0'
+// group = com.eigenbaumarkt.fetenarchiv
+// version = '0.0.2-SNAPSHOT'
+// sourceCompatibility = 1.8
 
-
-
-
-bootJar {
-    baseName = 'fetenarchiv-web'
-}
+// bootJar {
+//    baseName = 'fetenarchiv-web'
+// }
 
 repositories {
     mavenCentral()
     jcenter()
-}
-
-ext {
-    versionJQuery = '3.3.1-2'
-    versionBootstrap = '4.3.1'
 }
 
 webResources {

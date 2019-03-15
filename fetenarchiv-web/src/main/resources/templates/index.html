@@ -1,16 +1,18 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
-
-<html lang="de" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
-
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'home')}">
 <head>
     <meta charset="UTF-8">
     <title>Fetenarchiv - Index</title>
 </head>
 
 <body>
-<h1 th:text="'Index Seite'">Index Page</h1>
+<h2 th:text="#{welcome}">Willkommen!</h2>
 
-
+<div class="row">
+    <div class="col-md-12">
+        <img class="img-responsive" src="../static/resources/images/ffw-luelsfeld-wappen.png" th:src="@{/resources/images/ffw-luelsfeld-wappen.png}"/>
+    </div>
+</div>
 </body>
 </html>
