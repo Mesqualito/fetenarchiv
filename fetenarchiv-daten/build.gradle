@@ -12,14 +12,6 @@ ext { springBootVersion = '2.1.3.RELEASE' }
 
 apply plugin: 'java'
 
-// group = com.eigenbaumarkt.fetenarchiv
-// version = '0.0.2-SNAPSHOT'
-// sourceCompatibility = 1.8
-
-// jar {
-//    baseName = 'fetenarchiv-daten'
-// }
-
 repositories { mavenCentral() }
 
 dependencies {

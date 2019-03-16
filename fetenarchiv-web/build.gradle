@@ -11,7 +11,6 @@ buildscript {
     }
     dependencies {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-        classpath 'ro.isdc.wro4j.gradle:wro4j-gradle-plugin:1.8.0.Beta4'
     }
 }
 
@@ -24,40 +23,10 @@ plugins {
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply plugin: 'io.spring.dependency-management'
-apply plugin: 'wro4j'
-
-// group = com.eigenbaumarkt.fetenarchiv
-// version = '0.0.2-SNAPSHOT'
-// sourceCompatibility = 1.8
-
-// bootJar {
-//    baseName = 'fetenarchiv-web'
-// }
 
 repositories {
     mavenCentral()
     jcenter()
-}
-
-webResources {
-    bundle ('core') {
-        js 'js/**/*.js'
-        preProcessor 'jsMin'
-    }
-    bundle ('libs') {
-        js "webjars/jquery/$versionJQuery/jquery.min.js"
-    }
-    bundle ('theme-default') {
-        css "webjars/bootstrap/$versionBootstrap/less/bootstrap.less"
-        css 'themes/default/main.css'
-
-        cssOverrideImport 'variables.less', '../../../../themes/default/variables.less'
-        preProcessor 'less4j'
-        cssRewriteUrl()
-    }
-    assets {
-        include 'themes/default/images/**'
-    }
 }
 
 dependencies {
