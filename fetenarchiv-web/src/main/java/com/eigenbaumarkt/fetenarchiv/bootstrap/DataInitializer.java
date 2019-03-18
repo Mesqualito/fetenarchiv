@@ -10,90 +10,90 @@ import java.time.LocalDate;
 @Component
 public class DataInitializer implements CommandLineRunner {
 
-    private final OwnerService ownerService;
-    private final AddressService addressService;
-    private final PlaceService placeService;
+    private final KontaktService kontaktService;
+    private final AdressenService adressenService;
+    private final OrtService ortService;
     private final MediaService mediaService;
-    private final MediaTypeService mediaTypeService;
+    private final MediaTypenService mediaTypenService;
 
 
-    public DataInitializer(OwnerService ownerService, AddressService addressService,
-                           PlaceService placeService, MediaService mediaService,
-                           MediaTypeService mediaTypeService) {
-        this.ownerService = ownerService;
-        this.addressService = addressService;
-        this.placeService = placeService;
+    public DataInitializer(KontaktService kontaktService, AdressenService adressenService,
+                           OrtService ortService, MediaService mediaService,
+                           MediaTypenService mediaTypenService) {
+        this.kontaktService = kontaktService;
+        this.adressenService = adressenService;
+        this.ortService = ortService;
         this.mediaService = mediaService;
-        this.mediaTypeService = mediaTypeService;
+        this.mediaTypenService = mediaTypenService;
     }
 
     @Override
     public void run(String... args) throws Exception {
 
-        Owner owner1 = new Owner();
+        Kontakt kontakt1 = new Kontakt();
         LocalDate date = LocalDate.now();
-        owner1.setCreationStamp(date);
-        owner1.setLastUpdatedStamp(date);
-        owner1.setFirstName("Manfred");
-        owner1.setLastName("Krug");
+        kontakt1.setCreationStamp(date);
+        kontakt1.setLastUpdatedStamp(date);
+        kontakt1.setFirstName("Manfred");
+        kontakt1.setLastName("Krug");
 
-        Address address1 = new Address();
-        address1.setCreationStamp(date);
-        address1.setLastUpdatedStamp(date);
-        address1.setStreet("Wollinger Weg");
-        address1.setNumber("23");
+        Adresse adresse1 = new Adresse();
+        adresse1.setCreationStamp(date);
+        adresse1.setLastUpdatedStamp(date);
+        adresse1.setStreet("Wollinger Weg");
+        adresse1.setNumber("23");
 
-        Place place1 = new Place();
-        place1.setCreationStamp(date);
-        place1.setLastUpdatedStamp(date);
-        place1.setTitle("Oxfurthing");
-        place1.setZipCode("83H-25");
-        place1.setLand("Deutschland");
-        place1.setRegion("Buvuria");
+        Ort ort1 = new Ort();
+        ort1.setCreationStamp(date);
+        ort1.setLastUpdatedStamp(date);
+        ort1.setTitle("Oxfurthing");
+        ort1.setZipCode("83H-25");
+        ort1.setLand("Deutschland");
+        ort1.setRegion("Buvuria");
 
-        placeService.save(place1);
+        ortService.save(ort1);
 
-        address1.setPlace(place1);
+        adresse1.setOrt(ort1);
 
-        addressService.save(address1);
+        adressenService.save(adresse1);
 
-        owner1.setAddress(address1);
+        kontakt1.setAdresse(adresse1);
 
-        ownerService.save(owner1);
+        kontaktService.save(kontakt1);
 
-        Owner owner2 = new Owner();
+        Kontakt kontakt2 = new Kontakt();
         date = LocalDate.now();
-        owner2.setCreationStamp(date);
-        owner2.setLastUpdatedStamp(date);
-        owner2.setFirstName("Ullrich");
-        owner2.setLastName("Tramsfeld");
+        kontakt2.setCreationStamp(date);
+        kontakt2.setLastUpdatedStamp(date);
+        kontakt2.setFirstName("Ullrich");
+        kontakt2.setLastName("Tramsfeld");
 
-        Address address2 = new Address();
-        address2.setCreationStamp(date);
-        address2.setLastUpdatedStamp(date);
-        address2.setStreet("Butzenbergstr.");
-        address2.setNumber("5");
+        Adresse adresse2 = new Adresse();
+        adresse2.setCreationStamp(date);
+        adresse2.setLastUpdatedStamp(date);
+        adresse2.setStreet("Butzenbergstr.");
+        adresse2.setNumber("5");
 
-        Place place2 = new Place();
-        place2.setCreationStamp(date);
-        place2.setLastUpdatedStamp(date);
-        place2.setTitle("Munsfelden");
-        place2.setZipCode("86774");
-        place2.setLand("Deutschland");
-        place2.setRegion("Bayern");
+        Ort ort2 = new Ort();
+        ort2.setCreationStamp(date);
+        ort2.setLastUpdatedStamp(date);
+        ort2.setTitle("Munsfelden");
+        ort2.setZipCode("86774");
+        ort2.setLand("Deutschland");
+        ort2.setRegion("Bayern");
 
-        placeService.save(place2);
+        ortService.save(ort2);
 
-        address2.setPlace(place2);
+        adresse2.setOrt(ort2);
 
-        addressService.save(address2);
+        adressenService.save(adresse2);
 
-        owner2.setAddress(address2);
+        kontakt2.setAdresse(adresse2);
 
-        ownerService.save(owner2);
+        kontaktService.save(kontakt2);
 
-        System.out.println("Zwei \'Owner\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
-        System.out.println(owner1.getFirstName() + " " + owner1.getLastName() + ", " + owner2.getFirstName() + " " + owner2.getLastName());
+        System.out.println("Zwei \'Kontakt\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
+        System.out.println(kontakt1.getFirstName() + " " + kontakt1.getLastName() + ", " + kontakt2.getFirstName() + " " + kontakt2.getLastName());
 
 
         Media media1 = new Media();
@@ -102,16 +102,16 @@ public class DataInitializer implements CommandLineRunner {
         media1.setLastUpdatedStamp(date);
         media1.setDescription("Das erste Medien-Objekt");
 
-        MediaType mediaType1 = new MediaType();
-        mediaType1.setCreationStamp(date);
-        mediaType1.setLastUpdatedStamp(date);
-        mediaType1.setTitle("Bilddatei");
-        mediaType1.setDescription("Bilddateien in verschiedenen Formaten");
+        MediaTyp mediaTyp1 = new MediaTyp();
+        mediaTyp1.setCreationStamp(date);
+        mediaTyp1.setLastUpdatedStamp(date);
+        mediaTyp1.setTitle("Bilddatei");
+        mediaTyp1.setDescription("Bilddateien in verschiedenen Formaten");
 
-        mediaTypeService.save(mediaType1);
+        mediaTypenService.save(mediaTyp1);
 
-        media1.setMediaType(mediaType1);
-        media1.setOwner(owner1);
+        media1.setMediaTyp(mediaTyp1);
+        media1.setKontakt(kontakt1);
 
         mediaService.save(media1);
 
@@ -121,16 +121,16 @@ public class DataInitializer implements CommandLineRunner {
         media2.setLastUpdatedStamp(date);
         media2.setDescription("Das zweite Medien-Objekt");
 
-        MediaType mediaType2 = new MediaType();
-        mediaType2.setCreationStamp(date);
-        mediaType2.setLastUpdatedStamp(date);
-        mediaType2.setTitle("Filmdatei");
-        mediaType2.setDescription("Filmdateien in verschiedenen Formaten");
+        MediaTyp mediaTyp2 = new MediaTyp();
+        mediaTyp2.setCreationStamp(date);
+        mediaTyp2.setLastUpdatedStamp(date);
+        mediaTyp2.setTitle("Filmdatei");
+        mediaTyp2.setDescription("Filmdateien in verschiedenen Formaten");
 
-        mediaTypeService.save(mediaType2);
+        mediaTypenService.save(mediaTyp2);
 
-        media2.setMediaType(mediaType2);
-        media2.setOwner(owner2);
+        media2.setMediaTyp(mediaTyp2);
+        media2.setKontakt(kontakt2);
 
         mediaService.save(media2);
 

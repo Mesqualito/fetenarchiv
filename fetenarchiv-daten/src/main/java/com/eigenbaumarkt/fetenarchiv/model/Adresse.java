@@ -2,11 +2,11 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class RemoteContact extends Basis {
+public class Adresse extends Basis {
 
-    private String title;
-    private RcType rcType;
-    private String contact;
+    private String street;
+    private String number;
+    private Ort ort;
     private LocalDate creationStamp;
     private LocalDate lastUpdatedStamp;
 
@@ -26,27 +26,27 @@ public class RemoteContact extends Basis {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
-    public String getTitle() {
-        return title;
+    public String getStreet() {
+        return street;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setStreet(String street) {
+        this.street = street;
     }
 
-    public RcType getRcType() {
-        return rcType;
+    public String getNumber() {
+        return number;
     }
 
-    public void setRcType(RcType rcType) {
-        this.rcType = rcType;
+    public void setNumber(String number) {
+        this.number = number;
     }
 
-    public String getContact() {
-        return contact;
+    public Ort getOrt() {
+        return ort;
     }
 
-    public void setContact(String contact) {
-        this.contact = contact;
+    public void setOrt(Ort ort) {
+        this.ort = ort;
     }
 }

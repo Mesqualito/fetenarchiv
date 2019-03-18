@@ -2,21 +2,21 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Event extends BaseEntity {
+public class Fete extends Basis {
 
     private String title;
     private String description;
-    private Address address;
+    private Adresse adresse;
     private LocalDate startingDate;
     private LocalDate endingDate;
-    private Owner owner;
+    private Kontakt kontakt;
 
-    public Owner getOwner() {
-        return owner;
+    public Kontakt getKontakt() {
+        return kontakt;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
 
     public Person getContactPerson() {
@@ -48,12 +48,12 @@ public class Event extends BaseEntity {
     }
 
 
-    public Address getAddress() {
-        return address;
+    public Adresse getAdresse() {
+        return adresse;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 
     public String getTitle() {

@@ -2,11 +2,11 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Person extends BaseEntity {
+public class Person extends Basis {
 
     private String firstName;
     private String lastName;
-    private Address address;
+    private Adresse adresse;
     private LocalDate birthday;
     private RemoteContact rContact;
     private LocalDate creationStamp;
@@ -44,12 +44,12 @@ public class Person extends BaseEntity {
         this.lastName = lastName;
     }
 
-    public Address getAddress() {
-        return address;
+    public Adresse getAdresse() {
+        return adresse;
     }
 
-    public void setAddress(Address address) {
-        this.address = address;
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 
     public LocalDate getBirthday() {

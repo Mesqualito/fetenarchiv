@@ -1,11 +1,21 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
+import java.util.Set;
 
-public class Owner extends Person {
+public class Kontakt extends Person {
 
     private LocalDate creationStamp;
     private LocalDate lastUpdatedStamp;
+    private Set<Media> mediaSet;
+
+    public Set<Media> getMediaSet() {
+        return mediaSet;
+    }
+
+    public void setMediaSet(Set<Media> mediaSet) {
+        this.mediaSet = mediaSet;
+    }
 
     public LocalDate getCreationStamp() {
         return creationStamp;

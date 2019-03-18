@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Eigentümer-Liste</title>
+</head>
+
+<body>
+<!--/*@thymesVar id="kontakt" type="com.eigenbaumarkt.fetenarchiv.model.Kontakt"*/-->
+<h2 th:text="'Kontakt-Liste'">Liste der Kontakte</h2>
+
+<table class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Id</th>
+        <th style="width: 150px;">Vorname</th>
+        <th style="width: 150px;">Nachname</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="kontakt : ${kontakte}">
+        <td th:text="${kontakt.id}">1</td>
+        <td th:text="${kontakt.firstName}">default-Eintrag</td>
+        <td th:text="${kontakt.lastName}">default-Eintrag</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>

@@ -2,12 +2,12 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class Media extends BaseEntity {
+public class Media extends Basis {
 
     private String title;
     private String description;
-    private MediaType mediaType;
-    private Owner owner;
+    private MediaTyp mediaTyp;
+    private Kontakt kontakt;
     private Person contactPerson;
     private LocalDate creationStamp;
     private LocalDate lastUpdatedStamp;
@@ -29,8 +29,8 @@ public class Media extends BaseEntity {
     }
 
 
-    public Owner getOwner() {
-        return owner;
+    public Kontakt getKontakt() {
+        return kontakt;
     }
 
     public String getDescription() {
@@ -41,8 +41,8 @@ public class Media extends BaseEntity {
         this.description = description;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
 
     public Person getContactPerson() {
@@ -61,11 +61,11 @@ public class Media extends BaseEntity {
         this.title = title;
     }
 
-    public MediaType getMediaType() {
-        return mediaType;
+    public MediaTyp getMediaTyp() {
+        return mediaTyp;
     }
 
-    public void setMediaType(MediaType mediaType) {
-        this.mediaType = mediaType;
+    public void setMediaTyp(MediaTyp mediaTyp) {
+        this.mediaTyp = mediaTyp;
     }
 }

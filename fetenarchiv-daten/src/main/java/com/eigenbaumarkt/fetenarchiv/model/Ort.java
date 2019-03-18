@@ -2,10 +2,12 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.time.LocalDate;
 
-public class MediaType extends BaseEntity {
+public class Ort extends Basis {
 
     private String title;
-    private String description;
+    private String zipCode;
+    private String region;
+    private String land;
     private LocalDate creationStamp;
     private LocalDate lastUpdatedStamp;
 
@@ -25,6 +27,22 @@ public class MediaType extends BaseEntity {
         this.lastUpdatedStamp = lastUpdatedStamp;
     }
 
+    public String getRegion() {
+        return region;
+    }
+
+    public void setRegion(String region) {
+        this.region = region;
+    }
+
+    public String getLand() {
+        return land;
+    }
+
+    public void setLand(String land) {
+        this.land = land;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -33,11 +51,11 @@ public class MediaType extends BaseEntity {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
+    public String getZipCode() {
+        return zipCode;
     }
 
-    public void setDescription(String description) {
-        this.description = description;
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
     }
 }

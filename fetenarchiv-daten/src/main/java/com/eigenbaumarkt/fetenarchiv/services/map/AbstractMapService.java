@@ -1,11 +1,11 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
-import com.eigenbaumarkt.fetenarchiv.model.BaseEntity;
+import com.eigenbaumarkt.fetenarchiv.model.Basis;
 
 import java.util.*;
 
-// Objekt und ID, die durch die beiden Generics vorgegeben sind, müssen 'BaseEntity' bzw. 'Long' erweitern
-public abstract class AbstractMapService<T extends BaseEntity, ID extends Long> {
+// Objekt und ID, die durch die beiden Generics vorgegeben sind, müssen 'Basis' bzw. 'Long' erweitern
+public abstract class AbstractMapService<T extends Basis, ID extends Long> {
 
     protected Map<Long, T> map = new HashMap<>();
 

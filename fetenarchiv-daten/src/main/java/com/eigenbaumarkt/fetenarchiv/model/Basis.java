@@ -2,7 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import java.io.Serializable;
 
-public class BaseEntity implements Serializable {
+public class Basis implements Serializable {
 
     // Recommendation of Hibernate:
     // use Box-Types (not 'long', but 'Long')
