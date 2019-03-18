@@ -14,13 +14,9 @@
 
 <properties>
     <!-- Web dependencies for wro4j-maven-plugin -->
-    <!-- bootstrap 4.3.1 not working: Failed to compile less resource: ro.isdc.wro.model.resource.Resource@570ba13[CSS,fetenarchiv,true].
-         Could not find mixin named ".label-success"..
-         Could not find mixin named ".label-warning"..
-         ... -->
+    <!-- wro4j-maven-plugin only compatible until bootstrap 3.4.1 -->
     <webjars-bootstrap.version>3.4.1</webjars-bootstrap.version>
     <webjars-jquery-ui.version>1.12.1</webjars-jquery-ui.version>
-    <!-- actual webjars-jquery-version: 3.3.1-2 (project:  2.2.4) -->
     <webjars-jquery.version>3.3.1-2</webjars-jquery.version>
     <wro4j.version>1.8.0</wro4j.version>
 </properties>
