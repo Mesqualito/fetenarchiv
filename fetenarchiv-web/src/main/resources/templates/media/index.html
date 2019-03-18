@@ -1,7 +1,7 @@
-<!DOCTYPE html SYSTEM "http://www.thymeleaf.org/dtd/xhtml1-strict-thymeleaf-4.dtd">
+<!DOCTYPE html>
 
-<html lang="de" xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org"
+      th:replace="~{fragments/layout :: layout (~{::body},'media')}">
 
 <head>
     <meta charset="UTF-8">
@@ -10,9 +10,9 @@
 
 <body>
 <!--/*@thymesVar id="medium" type="com.eigenbaumarkt.fetenarchiv.model.Media"*/-->
-<h1 th:text="'Media Index Seite'">Index Page</h1>
+<h2 th:text="'Media Index Seite'">Index Page</h2>
 
-<table>
+<table id="media" class="table table-striped">
     <thead>
     <tr>
         <th>Id</th>
