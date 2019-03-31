@@ -1,13 +1,24 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
+import com.eigenbaumarkt.fetenarchiv.model.Media;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
+import com.eigenbaumarkt.fetenarchiv.services.MediaService;
+import com.eigenbaumarkt.fetenarchiv.services.MediaTypenService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
 public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> implements KontaktService {
+
+    private final MediaTypenService mediaTypenService;
+    private final MediaService mediaService;
+
+    public KontaktServiceMap(MediaTypenService mediaTypenService, MediaService mediaService) {
+        this.mediaTypenService = mediaTypenService;
+        this.mediaService = mediaService;
+    }
 
     @Override
     public Set<Kontakt> findAll() {
@@ -21,7 +32,28 @@ public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> impleme
 
     @Override
     public Kontakt save(Kontakt kontakt) {
-        return super.save(kontakt);
+
+        if(kontakt != null) {
+            if (kontakt.getMediaSet() != null){
+                kontakt.getMediaSet().forEach(media -> {
+                    if(media.getMediaTyp() != null){
+                        if(media.getMediaTyp().getId() == null){
+                            media.setMediaTyp(mediaTypenService.save(media.getMediaTyp()));
+                        }
+
+                    } else {
+                        throw new RuntimeException("MediaTyp ist notwendig.");                    }
+
+                    if (media.getId() == null){
+                        Media savedMedia = mediaService.save(media);
+                        media.setId(savedMedia.getId());
+                    }
+                });
+            }
+            return super.save(kontakt);
+        } else {
+            return null;
+        }
     }
 
     @Override
