@@ -8,6 +8,27 @@ public class Kontakt extends Person {
     private LocalDate creationStamp;
     private LocalDate lastUpdatedStamp;
     private Set<Media> mediaSet;
+    private Set<Fete> fetenSet;
+
+    @Override
+    public LocalDate getCreationStamp() {
+        return creationStamp;
+    }
+
+    @Override
+    public void setCreationStamp(LocalDate creationStamp) {
+        this.creationStamp = creationStamp;
+    }
+
+    @Override
+    public LocalDate getLastUpdatedStamp() {
+        return lastUpdatedStamp;
+    }
+
+    @Override
+    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
+        this.lastUpdatedStamp = lastUpdatedStamp;
+    }
 
     public Set<Media> getMediaSet() {
         return mediaSet;
@@ -17,21 +38,11 @@ public class Kontakt extends Person {
         this.mediaSet = mediaSet;
     }
 
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    public Set<Fete> getFetenSet() {
+        return fetenSet;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setFetenSet(Set<Fete> fetenSet) {
+        this.fetenSet = fetenSet;
     }
-
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
-    }
-
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
-
 }
