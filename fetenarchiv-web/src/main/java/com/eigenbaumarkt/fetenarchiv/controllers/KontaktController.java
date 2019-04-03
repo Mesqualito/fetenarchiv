@@ -26,4 +26,11 @@ public class KontaktController {
 
         return "kontakte/index";
     }
+
+    @RequestMapping({"/find"})
+    public String findKontakte(){
+
+        return "notimplemented";
+
+    }
 }
