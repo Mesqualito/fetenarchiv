@@ -33,6 +33,9 @@ public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> impleme
     @Override
     public Kontakt save(Kontakt kontakt) {
 
+        // Defensive Coding:
+        // bei abhängigen HashSets Id-Erstellung berücksichtigen
+        // (wird in Spring von Hibernate übernommen)
         if(kontakt != null) {
             if (kontakt.getMediaSet() != null){
                 kontakt.getMediaSet().forEach(media -> {

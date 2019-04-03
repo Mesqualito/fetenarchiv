@@ -30,6 +30,16 @@ public class DataInitializer implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
 
+        // if there is already data persisted, don't repeat
+        int count = mediaTypenService.findAll().size();
+
+        if(count == 0) {
+            loadData();
+        }
+
+    }
+
+    private void loadData() {
         Kontakt kontakt1 = new Kontakt();
         LocalDate date = LocalDate.now();
         kontakt1.setCreationStamp(date);
@@ -51,15 +61,15 @@ public class DataInitializer implements CommandLineRunner {
         ort1.setLand("Deutschland");
         ort1.setRegion("Buvuria");
 
-        ortService.save(ort1);
+        Ort savedOrt1 = ortService.save(ort1);
 
-        adresse1.setOrt(ort1);
+        adresse1.setOrt(savedOrt1);
 
-        adressenService.save(adresse1);
+        Adresse savedAdresse1 = adressenService.save(adresse1);
 
-        kontakt1.setAdresse(adresse1);
+        kontakt1.setAdresse(savedAdresse1);
 
-        kontaktService.save(kontakt1);
+        Kontakt savedKontakt1 = kontaktService.save(kontakt1);
 
         Kontakt kontakt2 = new Kontakt();
         date = LocalDate.now();
@@ -82,15 +92,15 @@ public class DataInitializer implements CommandLineRunner {
         ort2.setLand("Deutschland");
         ort2.setRegion("Bayern");
 
-        ortService.save(ort2);
+        Ort savedOrt2 = ortService.save(ort2);
 
         adresse2.setOrt(ort2);
 
-        adressenService.save(adresse2);
+        Adresse savedAdresse2 = adressenService.save(adresse2);
 
         kontakt2.setAdresse(adresse2);
 
-        kontaktService.save(kontakt2);
+        Kontakt savedKontakt2 = kontaktService.save(kontakt2);
 
         System.out.println("Zwei \'Kontakt\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
         System.out.println(kontakt1.getFirstName() + " " + kontakt1.getLastName() + ", " + kontakt2.getFirstName() + " " + kontakt2.getLastName());
@@ -108,12 +118,12 @@ public class DataInitializer implements CommandLineRunner {
         mediaTyp1.setTitle("Bilddatei");
         mediaTyp1.setDescription("Bilddateien in verschiedenen Formaten");
 
-        mediaTypenService.save(mediaTyp1);
+        MediaTyp savedMediaTyp1 = mediaTypenService.save(mediaTyp1);
 
         media1.setMediaTyp(mediaTyp1);
         media1.setKontakt(kontakt1);
 
-        mediaService.save(media1);
+        Media savedMedia1 = mediaService.save(media1);
 
         Media media2 = new Media();
         date = LocalDate.now();
@@ -127,14 +137,18 @@ public class DataInitializer implements CommandLineRunner {
         mediaTyp2.setTitle("Filmdatei");
         mediaTyp2.setDescription("Filmdateien in verschiedenen Formaten");
 
-        mediaTypenService.save(mediaTyp2);
+        MediaTyp savedMediaTyp2 = mediaTypenService.save(mediaTyp2);
 
         media2.setMediaTyp(mediaTyp2);
         media2.setKontakt(kontakt2);
 
-        mediaService.save(media2);
+        Media savedMedia2 = mediaService.save(media2);
 
         System.out.println("Zwei \'Media\'-Objekte mit jeweils individuellem Typ erstellt und geladen!");
 
+        kontakt1.getMediaSet().add(savedMedia1);
+        kontakt2.getMediaSet().add(savedMedia2);
+
+        System.out.println("Jeweils ein Media-Objekt zu einem Kontakt gesichert.");
     }
 }
