@@ -1,52 +1,69 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 
+@Entity
+@Table(name = "feten")
 public class Fete extends Basis {
 
-    private String title;
-    private String description;
+    @Column(name = "titel")
+    private String titel;
+
+    @Column(name = "beschreibung")
+    private String beschreibung;
+
+    @Column(name = "start_datum")
+    private LocalDate startDatum;
+
+    @Column(name = "end_datum")
+    private LocalDate endDatum;
+
+    // EAGER sorgt dafür, dass die Daten
+    // auch vor eigentlichen Anfragen geladen werden
+    // andernfalls wäre die adresse "null"
+    // wenn fete geladen wird
+    @ManyToMany(fetch = FetchType.EAGER)
+    @JoinTable(name = "feten_adressen",
+    joinColumns = @JoinColumn(name = "fete_id"),
+    inverseJoinColumns = @JoinColumn(name = "adresse_id"))
     private Adresse adresse;
-    private LocalDate startingDate;
-    private LocalDate endingDate;
+
+    @ManyToOne
+    @JoinColumn(name = "kontakt_id")
     private Kontakt kontakt;
 
-    public Kontakt getKontakt() {
-        return kontakt;
+    public String getTitel() {
+        return titel;
     }
 
-    public void setKontakt(Kontakt kontakt) {
-        this.kontakt = kontakt;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    public Person getContactPerson() {
-        return contactPerson;
+    public String getBeschreibung() {
+        return beschreibung;
     }
 
-    public void setContactPerson(Person contactPerson) {
-        this.contactPerson = contactPerson;
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 
-    private Person contactPerson;
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
-
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    public LocalDate getStartDatum() {
+        return startDatum;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setStartDatum(LocalDate startDatum) {
+        this.startDatum = startDatum;
     }
 
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
+    public LocalDate getEndDatum() {
+        return endDatum;
     }
 
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
+    public void setEndDatum(LocalDate endDatum) {
+        this.endDatum = endDatum;
     }
-
 
     public Adresse getAdresse() {
         return adresse;
@@ -56,35 +73,11 @@ public class Fete extends Basis {
         this.adresse = adresse;
     }
 
-    public String getTitle() {
-        return title;
+    public Kontakt getKontakt() {
+        return kontakt;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public LocalDate getStartingDate() {
-        return startingDate;
-    }
-
-    public void setStartingDate(LocalDate startingDate) {
-        this.startingDate = startingDate;
-    }
-
-    public LocalDate getEndingDate() {
-        return endingDate;
-    }
-
-    public void setEndingDate(LocalDate endingDate) {
-        this.endingDate = endingDate;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
 }

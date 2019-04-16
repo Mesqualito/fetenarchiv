@@ -1,9 +1,9 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
 
 @Entity
+@Table(name = "adressen")
 public class Adresse extends Basis {
 
     @Column(name = "strasse")
@@ -12,7 +12,8 @@ public class Adresse extends Basis {
     @Column(name = "haus_nr")
     private String hausNr;
 
-    @Column(name = "ort")
+    @ManyToOne
+    @JoinColumn(name = "ort_id")
     private Ort ort;
 
     public String getStrasse() {
