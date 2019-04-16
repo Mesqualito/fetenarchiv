@@ -1,43 +1,32 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "typen")
 public class MediaTyp extends Basis {
 
-    private String title;
-    private String description;
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
+    @Column(name = "titel")
+    private String titel;
 
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    @Column(name = "beschreibung")
+    private String beschreibung;
+
+    public String getTitel() {
+        return titel;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
+    public String getBeschreibung() {
+        return beschreibung;
     }
 
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 }

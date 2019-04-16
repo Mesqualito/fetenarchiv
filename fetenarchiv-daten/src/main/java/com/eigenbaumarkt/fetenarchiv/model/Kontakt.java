@@ -1,34 +1,22 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Set;
 
+@Entity
+@Table(name = "kontakte")
 public class Kontakt extends Person {
 
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
+    @Column(name = "geburtstag")
+    private LocalDate geburtstag;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kontakt")
+    private Adresse adresse;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "kontakt")
     private Set<Media> mediaSet = new HashSet<>();
-
-    @Override
-    public LocalDate getCreationStamp() {
-        return creationStamp;
-    }
-
-    @Override
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
-    }
-
-    @Override
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
-    }
-
-    @Override
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
 
     public Set<Media> getMediaSet() {
         return mediaSet;
@@ -36,5 +24,21 @@ public class Kontakt extends Person {
 
     public void setMediaSet(Set<Media> mediaSet) {
         this.mediaSet = mediaSet;
+    }
+
+    public LocalDate getGeburtstag() {
+        return geburtstag;
+    }
+
+    public void setGeburtstag(LocalDate geburtstag) {
+        this.geburtstag = geburtstag;
+    }
+
+    public Adresse getAdresse() {
+        return adresse;
+    }
+
+    public void setAdresse(Adresse adresse) {
+        this.adresse = adresse;
     }
 }

@@ -1,45 +1,34 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import java.time.LocalDate;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 
+@Entity
 public class Adresse extends Basis {
 
-    private String street;
-    private String number;
+    @Column(name = "strasse")
+    private String strasse;
+
+    @Column(name = "haus_nr")
+    private String hausNr;
+
+    @Column(name = "ort")
     private Ort ort;
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
 
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    public String getStrasse() {
+        return strasse;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setStrasse(String strasse) {
+        this.strasse = strasse;
     }
 
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
+    public String getHausNr() {
+        return hausNr;
     }
 
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
-    public String getStreet() {
-        return street;
-    }
-
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getNumber() {
-        return number;
-    }
-
-    public void setNumber(String number) {
-        this.number = number;
+    public void setHausNr(String hausNr) {
+        this.hausNr = hausNr;
     }
 
     public Ort getOrt() {

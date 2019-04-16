@@ -1,64 +1,39 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import java.time.LocalDate;
+import javax.persistence.*;
 
+@Entity
+@Table(name = "medien")
 public class Media extends Basis {
 
-    private String title;
-    private String description;
+    @Column(name = "titel")
+    private String titel;
+
+    @Column(name = "beschreibung")
+    private String beschreibung;
+
+    @ManyToOne
+    @JoinColumn(name = "typ_id")
     private MediaTyp mediaTyp;
+
+    @ManyToOne
+    @JoinColumn(name = "kontakt_id")
     private Kontakt kontakt;
-    private Person contactPerson;
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
 
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    public String getTitel() {
+        return titel;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
+    public String getBeschreibung() {
+        return beschreibung;
     }
 
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
-
-
-    public Kontakt getKontakt() {
-        return kontakt;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public void setKontakt(Kontakt kontakt) {
-        this.kontakt = kontakt;
-    }
-
-    public Person getContactPerson() {
-        return contactPerson;
-    }
-
-    public void setContactPerson(Person contactPerson) {
-        this.contactPerson = contactPerson;
-    }
-
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
+    public void setBeschreibung(String beschreibung) {
+        this.beschreibung = beschreibung;
     }
 
     public MediaTyp getMediaTyp() {
@@ -67,5 +42,13 @@ public class Media extends Basis {
 
     public void setMediaTyp(MediaTyp mediaTyp) {
         this.mediaTyp = mediaTyp;
+    }
+
+    public Kontakt getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
 }
