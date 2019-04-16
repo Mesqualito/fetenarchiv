@@ -1,34 +1,45 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Set;
 
+@Entity
+@Table(name = "termine")
 public class Termin extends Basis {
 
-    private LocalDate date;
-    private String title;
-    private Media media;
+    @Column(name = "titel")
+    private String titel;
 
-    public LocalDate getDate() {
-        return date;
+    @Column(name = "datum")
+    private LocalDate datum;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "termin")
+    private Set<Media> mediaSet;
+
+    public String getTitel() {
+        return titel;
     }
 
-    public void setDate(LocalDate date) {
-        this.date = date;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    public String getTitle() {
-        return title;
+    public LocalDate getDatum() {
+        return datum;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
+    public void setDatum(LocalDate datum) {
+        this.datum = datum;
     }
 
-    public Media getMedia() {
-        return media;
+    public Set<Media> getMediaSet() {
+        return mediaSet;
     }
 
-    public void setMedia(Media media) {
-        this.media = media;
+    public void setMediaSet(Set<Media> mediaSet) {
+        this.mediaSet = mediaSet;
     }
+
+
 }

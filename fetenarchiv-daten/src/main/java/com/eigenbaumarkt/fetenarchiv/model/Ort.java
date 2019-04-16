@@ -1,8 +1,8 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Table;
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "orte")
@@ -19,6 +19,9 @@ public class Ort extends Basis {
 
     @Column(name = "land")
     private String land;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ort")
+    private Set<Adresse> adresseSet = new HashSet<>();
 
     public String getTitel() {
         return titel;
@@ -50,5 +53,13 @@ public class Ort extends Basis {
 
     public void setLand(String land) {
         this.land = land;
+    }
+
+    public Set<Adresse> getAdresseSet() {
+        return adresseSet;
+    }
+
+    public void setAdresseSet(Set<Adresse> adresseSet) {
+        this.adresseSet = adresseSet;
     }
 }

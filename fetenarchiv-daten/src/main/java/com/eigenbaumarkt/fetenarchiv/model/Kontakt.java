@@ -12,7 +12,7 @@ public class Kontakt extends Person {
     @Column(name = "geburtstag")
     private LocalDate geburtstag;
 
-    @OneToMany(mappedBy = "kontakt")
+    @OneToOne
     private Adresse adresse;
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kontakt")
@@ -41,4 +41,6 @@ public class Kontakt extends Person {
     public void setAdresse(Adresse adresse) {
         this.adresse = adresse;
     }
+
+
 }

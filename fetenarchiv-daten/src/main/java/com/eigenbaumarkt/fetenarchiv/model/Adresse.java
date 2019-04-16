@@ -6,6 +6,9 @@ import javax.persistence.*;
 @Table(name = "adressen")
 public class Adresse extends Basis {
 
+    @OneToOne
+    private Kontakt kontakt;
+
     @Column(name = "strasse")
     private String strasse;
 
@@ -38,5 +41,13 @@ public class Adresse extends Basis {
 
     public void setOrt(Ort ort) {
         this.ort = ort;
+    }
+
+    public Kontakt getKontakt() {
+        return kontakt;
+    }
+
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
 }
