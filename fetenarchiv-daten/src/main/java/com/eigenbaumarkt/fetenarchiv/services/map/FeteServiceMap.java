@@ -1,13 +1,13 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Fete;
-import com.eigenbaumarkt.fetenarchiv.services.FetenService;
+import com.eigenbaumarkt.fetenarchiv.services.FeteService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class FetenServiceMap extends AbstractMapService<Fete, Long> implements FetenService {
+public class FeteServiceMap extends AbstractMapService<Fete, Long> implements FeteService {
 
     @Override
     public Set<Fete> findAll() {

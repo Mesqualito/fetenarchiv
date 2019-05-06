@@ -7,7 +7,6 @@ import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.HashSet;
-import java.util.Optional;
 import java.util.Set;
 
 @Service
@@ -34,12 +33,7 @@ public class KontaktSDJpaService implements KontaktService {
 
     @Override
     public Kontakt findById(Long id) {
-        Optional<Kontakt> optionalKontakt = kontaktRepository.findById(id);
-        if(optionalKontakt.isPresent()){
-            return optionalKontakt.get();
-        } else {
-            return null;
-        }
+        return kontaktRepository.findById(id).orElse(null);
     }
 
     @Override

@@ -4,7 +4,7 @@ import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
 import com.eigenbaumarkt.fetenarchiv.model.Media;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import com.eigenbaumarkt.fetenarchiv.services.MediaService;
-import com.eigenbaumarkt.fetenarchiv.services.MediaTypenService;
+import com.eigenbaumarkt.fetenarchiv.services.MediaTypService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
@@ -12,11 +12,11 @@ import java.util.Set;
 @Service
 public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> implements KontaktService {
 
-    private final MediaTypenService mediaTypenService;
+    private final MediaTypService mediaTypService;
     private final MediaService mediaService;
 
-    public KontaktServiceMap(MediaTypenService mediaTypenService, MediaService mediaService) {
-        this.mediaTypenService = mediaTypenService;
+    public KontaktServiceMap(MediaTypService mediaTypService, MediaService mediaService) {
+        this.mediaTypService = mediaTypService;
         this.mediaService = mediaService;
     }
 
@@ -41,7 +41,7 @@ public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> impleme
                 kontakt.getMediaSet().forEach(media -> {
                     if(media.getMediaTyp() != null){
                         if(media.getMediaTyp().getId() == null){
-                            media.setMediaTyp(mediaTypenService.save(media.getMediaTyp()));
+                            media.setMediaTyp(mediaTypService.save(media.getMediaTyp()));
                         }
 
                     } else {

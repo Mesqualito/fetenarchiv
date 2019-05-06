@@ -1,13 +1,13 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Adresse;
-import com.eigenbaumarkt.fetenarchiv.services.AdressenService;
+import com.eigenbaumarkt.fetenarchiv.services.AdresseService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class AdressenServiceMap extends AbstractMapService<Adresse, Long> implements AdressenService {
+public class AdresseServiceMap extends AbstractMapService<Adresse, Long> implements AdresseService {
 
     @Override
     public Set<Adresse> findAll() {

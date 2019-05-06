@@ -1,13 +1,13 @@
 package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.MediaTyp;
-import com.eigenbaumarkt.fetenarchiv.services.MediaTypenService;
+import com.eigenbaumarkt.fetenarchiv.services.MediaTypService;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class MediaTypenServiceMap extends AbstractMapService<MediaTyp, Long> implements MediaTypenService {
+public class MediaTypServiceMap extends AbstractMapService<MediaTyp, Long> implements MediaTypService {
 
     @Override
     public Set<MediaTyp> findAll() {
