@@ -70,7 +70,7 @@ public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> impleme
     }
 
     @Override
-    public Set<Kontakt> findByLastName(String lastName) {
+    public Kontakt findByLastName(String lastName) {
 
         // TODO
         return null;

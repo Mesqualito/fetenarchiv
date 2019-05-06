@@ -5,4 +5,6 @@ import org.springframework.data.repository.CrudRepository;
 
 public interface KontaktRepository extends CrudRepository<Kontakt, Long> {
 
+    Kontakt findByLastName(String lastName);
+
 }
