@@ -1,4 +1,4 @@
-package com.eigenbaumarkt.fetenarchiv.services.map;
+package com.eigenbaumarkt.fetenarchiv.services.springdatajpa;
 
 import com.eigenbaumarkt.fetenarchiv.model.MediaTyp;
 import com.eigenbaumarkt.fetenarchiv.repositories.MediaTypRepository;
