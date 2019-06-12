@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class MediaServiceMap extends AbstractMapService<Media, Long> implements MediaService {
+public class MediaMapService extends AbstractMapService<Media, Long> implements MediaService {
 
     @Override
     public Set<Media> findAll() {

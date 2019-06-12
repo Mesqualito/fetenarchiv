@@ -10,12 +10,12 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class KontaktServiceMap extends AbstractMapService<Kontakt, Long> implements KontaktService {
+public class KontaktMapService extends AbstractMapService<Kontakt, Long> implements KontaktService {
 
     private final MediaTypService mediaTypService;
     private final MediaService mediaService;
 
-    public KontaktServiceMap(MediaTypService mediaTypService, MediaService mediaService) {
+    public KontaktMapService(MediaTypService mediaTypService, MediaService mediaService) {
         this.mediaTypService = mediaTypService;
         this.mediaService = mediaService;
     }

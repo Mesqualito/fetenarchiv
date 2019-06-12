@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import java.util.Set;
 
 @Service
-public class MediaTypServiceMap extends AbstractMapService<MediaTyp, Long> implements MediaTypService {
+public class MediaTypMapService extends AbstractMapService<MediaTyp, Long> implements MediaTypService {
 
     @Override
     public Set<MediaTyp> findAll() {
