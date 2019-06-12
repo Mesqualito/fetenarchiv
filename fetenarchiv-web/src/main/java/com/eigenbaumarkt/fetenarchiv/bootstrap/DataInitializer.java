@@ -15,16 +15,18 @@ public class DataInitializer implements CommandLineRunner {
     private final OrtService ortService;
     private final MediaService mediaService;
     private final MediaTypService mediaTypService;
+    private final TerminService terminService;
 
 
     public DataInitializer(KontaktService kontaktService, AdresseService adresseService,
                            OrtService ortService, MediaService mediaService,
-                           MediaTypService mediaTypService) {
+                           MediaTypService mediaTypService, TerminService terminService) {
         this.kontaktService = kontaktService;
         this.adresseService = adresseService;
         this.ortService = ortService;
         this.mediaService = mediaService;
         this.mediaTypService = mediaTypService;
+        this.terminService = terminService;
     }
 
     @Override
@@ -150,5 +152,14 @@ public class DataInitializer implements CommandLineRunner {
         kontakt2.getMediaSet().add(savedMedia2);
 
         System.out.println("Jeweils ein Media-Objekt zu einem Kontakt gesichert.");
+
+        Termin ersterTermin = new Termin();
+        ersterTermin.setKontakt(kontakt1);
+        ersterTermin.setDatum(LocalDate.now());
+        ersterTermin.setTitel("Der erste Termin!");
+        terminService.save(ersterTermin);
+
+        System.out.println("Ein erster Termin zu einem Kontakt gesichert.");
+
     }
 }

@@ -2,6 +2,8 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 @Table(name = "feten")
@@ -27,7 +29,7 @@ public class Fete extends Basis {
     @JoinTable(name = "feten_adressen",
     joinColumns = @JoinColumn(name = "fete_id"),
     inverseJoinColumns = @JoinColumn(name = "adresse_id"))
-    private Adresse adresse;
+    private Set<Adresse> adressen = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "kontakt_id")
@@ -65,19 +67,19 @@ public class Fete extends Basis {
         this.endDatum = endDatum;
     }
 
-    public Adresse getAdresse() {
-        return adresse;
-    }
-
-    public void setAdresse(Adresse adresse) {
-        this.adresse = adresse;
-    }
-
     public Kontakt getKontakt() {
         return kontakt;
     }
 
     public void setKontakt(Kontakt kontakt) {
         this.kontakt = kontakt;
+    }
+
+    public Set<Adresse> getAdressen() {
+        return adressen;
+    }
+
+    public void setAdressen(Set<Adresse> adressen) {
+        this.adressen = adressen;
     }
 }

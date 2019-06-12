@@ -2,11 +2,13 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Media;
 import com.eigenbaumarkt.fetenarchiv.services.MediaService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class MediaMapService extends AbstractMapService<Media, Long> implements MediaService {
 
     @Override

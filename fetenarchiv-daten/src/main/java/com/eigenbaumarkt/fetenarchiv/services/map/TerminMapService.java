@@ -2,11 +2,13 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Termin;
 import com.eigenbaumarkt.fetenarchiv.services.TerminService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
+@Profile({"default", "map"})
 public class TerminMapService extends AbstractMapService<Termin, Long> implements TerminService {
 
     @Override
