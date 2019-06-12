@@ -1,8 +1,10 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import java.time.LocalDate;
-import java.util.Set;
 
 @Entity
 @Table(name = "termine")
@@ -14,8 +16,8 @@ public class Termin extends Basis {
     @Column(name = "datum")
     private LocalDate datum;
 
-    @OneToMany(cascade = CascadeType.ALL, mappedBy = "termin")
-    private Set<Media> mediaSet;
+    @OneToOne
+    private Kontakt kontakt;
 
     public String getTitel() {
         return titel;
@@ -33,13 +35,11 @@ public class Termin extends Basis {
         this.datum = datum;
     }
 
-    public Set<Media> getMediaSet() {
-        return mediaSet;
+    public Kontakt getKontakt() {
+        return kontakt;
     }
 
-    public void setMediaSet(Set<Media> mediaSet) {
-        this.mediaSet = mediaSet;
+    public void setKontakt(Kontakt kontakt) {
+        this.kontakt = kontakt;
     }
-
-
 }

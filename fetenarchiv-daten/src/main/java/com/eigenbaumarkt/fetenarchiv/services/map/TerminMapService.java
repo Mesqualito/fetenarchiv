@@ -21,13 +21,7 @@ public class TerminMapService extends AbstractMapService<Termin, Long> implement
 
     @Override
     public Termin save(Termin termin) {
-        /* TODO: durch die Medien-Objekte im MediaSet iterieren,
-         * Runtime.exception werfen bei:
-         * - media.getKontakt() == null oder
-         * - media.getId() == null oder
-         * - media.getKontakt().getId() == null
-         */
-        if(termin.getMediaSet() == null ){
+        if(termin.getKontakt() == null || termin.getKontakt().getId() == null){
             throw new RuntimeException("Ungültiger Termin!");
         }
         return super.save(termin);
