@@ -1,9 +1,19 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 import java.io.Serializable;
 import java.time.LocalDate;
 
+// Projekt Lombok
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
 // die Annotation teilt Spring Data JPA mit,
 // dass die Klasse vererbt wird und nicht
 // selbst gespeichert zu werden braucht
@@ -22,27 +32,4 @@ public class Basis implements Serializable {
     @Column(name = "last_updated_stamp")
     private LocalDate lastUpdatedStamp;
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public LocalDate getCreationStamp() {
-        return creationStamp;
-    }
-
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
-    }
-
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
-    }
-
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
-    }
 }

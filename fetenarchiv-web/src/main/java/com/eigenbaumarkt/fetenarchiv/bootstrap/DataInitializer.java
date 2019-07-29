@@ -71,7 +71,7 @@ public class DataInitializer implements CommandLineRunner {
 
         kontakt1.setAdresse(savedAdresse1);
 
-        Kontakt savedKontakt1 = kontaktService.save(kontakt1);
+        kontaktService.save(kontakt1);
 
         Kontakt kontakt2 = new Kontakt();
         date = LocalDate.now();
@@ -94,19 +94,18 @@ public class DataInitializer implements CommandLineRunner {
         ort2.setLand("Deutschland");
         ort2.setRegion("Bayern");
 
-        Ort savedOrt2 = ortService.save(ort2);
+        ortService.save(ort2);
 
         adresse2.setOrt(ort2);
 
-        Adresse savedAdresse2 = adresseService.save(adresse2);
+        adresseService.save(adresse2);
 
         kontakt2.setAdresse(adresse2);
 
-        Kontakt savedKontakt2 = kontaktService.save(kontakt2);
+        kontaktService.save(kontakt2);
 
         System.out.println("Zwei \'Kontakt\'-Objekte mit jeweils individuellen Adressen erstellt und geladen:");
         System.out.println(kontakt1.getFirstName() + " " + kontakt1.getLastName() + ", " + kontakt2.getFirstName() + " " + kontakt2.getLastName());
-
 
         Media media1 = new Media();
         date = LocalDate.now();
@@ -120,7 +119,7 @@ public class DataInitializer implements CommandLineRunner {
         mediaTyp1.setTitel("Bilddatei");
         mediaTyp1.setBeschreibung("Bilddateien in verschiedenen Formaten");
 
-        MediaTyp savedMediaTyp1 = mediaTypService.save(mediaTyp1);
+        mediaTypService.save(mediaTyp1);
 
         media1.setMediaTyp(mediaTyp1);
         media1.setKontakt(kontakt1);
@@ -139,7 +138,7 @@ public class DataInitializer implements CommandLineRunner {
         mediaTyp2.setTitel("Filmdatei");
         mediaTyp2.setBeschreibung("Filmdateien in verschiedenen Formaten");
 
-        MediaTyp savedMediaTyp2 = mediaTypService.save(mediaTyp2);
+       mediaTypService.save(mediaTyp2);
 
         media2.setMediaTyp(mediaTyp2);
         media2.setKontakt(kontakt2);
@@ -160,6 +159,5 @@ public class DataInitializer implements CommandLineRunner {
         terminService.save(ersterTermin);
 
         System.out.println("Ein erster Termin zu einem Kontakt gesichert.");
-
     }
 }

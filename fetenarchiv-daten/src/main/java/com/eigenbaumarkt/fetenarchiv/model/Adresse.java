@@ -1,7 +1,14 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "adressen")
 public class Adresse extends Basis {
@@ -18,36 +25,4 @@ public class Adresse extends Basis {
     @ManyToOne
     @JoinColumn(name = "ort_id")
     private Ort ort;
-
-    public String getStrasse() {
-        return strasse;
-    }
-
-    public void setStrasse(String strasse) {
-        this.strasse = strasse;
-    }
-
-    public String getHausNr() {
-        return hausNr;
-    }
-
-    public void setHausNr(String hausNr) {
-        this.hausNr = hausNr;
-    }
-
-    public Ort getOrt() {
-        return ort;
-    }
-
-    public void setOrt(Ort ort) {
-        this.ort = ort;
-    }
-
-    public Kontakt getKontakt() {
-        return kontakt;
-    }
-
-    public void setKontakt(Kontakt kontakt) {
-        this.kontakt = kontakt;
-    }
 }

@@ -1,9 +1,16 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import lombok.*;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "typen")
 public class MediaTyp extends Basis {
@@ -13,20 +20,4 @@ public class MediaTyp extends Basis {
 
     @Column(name = "beschreibung")
     private String beschreibung;
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
 }

@@ -1,7 +1,14 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 @Entity
 @Table(name = "medien")
 public class Media extends Basis {
@@ -23,46 +30,4 @@ public class Media extends Basis {
     @ManyToOne
     @JoinColumn(name = "termin_id")
     private Termin termin;
-
-    public String getTitel() {
-        return titel;
-    }
-
-    public void setTitel(String titel) {
-        this.titel = titel;
-    }
-
-    public String getBeschreibung() {
-        return beschreibung;
-    }
-
-    public void setBeschreibung(String beschreibung) {
-        this.beschreibung = beschreibung;
-    }
-
-    public MediaTyp getMediaTyp() {
-        return mediaTyp;
-    }
-
-    public void setMediaTyp(MediaTyp mediaTyp) {
-        this.mediaTyp = mediaTyp;
-    }
-
-    public Kontakt getKontakt() {
-        return kontakt;
-    }
-
-    public void setKontakt(Kontakt kontakt) {
-        this.kontakt = kontakt;
-    }
-
-    public Termin getTermin() {
-        return termin;
-    }
-
-    public void setTermin(Termin termin) {
-        this.termin = termin;
-    }
-
-
 }
