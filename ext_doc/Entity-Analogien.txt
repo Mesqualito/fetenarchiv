@@ -2,8 +2,8 @@
 Kontakt    - Owner
 Person     - Person
 Media      - Pet
-Media-Typ  - PetType
+MediaTyp   - PetType
 Fete	   - Vet
-Adresse	   - Vet Speciality
+Adresse	   - Speciality
 Ort
 Termin	   - Visit
