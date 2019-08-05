@@ -13,4 +13,12 @@ public class IndexController {
         // 'resources/templates/index.html'
         return "index";
     }
+
+    @RequestMapping({"/oups"})
+    public String showErrors(){
+
+        return "notimplemented";
+
+    }
+
 }

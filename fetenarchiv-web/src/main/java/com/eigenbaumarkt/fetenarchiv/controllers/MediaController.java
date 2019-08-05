@@ -5,7 +5,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-@RequestMapping({"/media"})
 @Controller
 public class MediaController {
 
@@ -15,11 +14,12 @@ public class MediaController {
         this.mediaService = mediaService;
     }
 
-    @RequestMapping({"", "/", "/index", "/index.htm", "/index.html"})
+    @RequestMapping({"/media", "/media.html", "/media/index", "/media/index.htm", "/media/index.html"})
     public String listMedia(Model model){
 
         model.addAttribute("media", mediaService.findAll());
 
         return "media/index";
     }
+
 }

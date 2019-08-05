@@ -1,0 +1,9 @@
+	         Contact Info Properties
+Kontakt    - Owner
+Person     - Person
+Media      - Pet
+MediaTyp   - PetType
+Fete	   - Vet
+Adresse	   - Speciality
+Ort
+Termin	   - Visit

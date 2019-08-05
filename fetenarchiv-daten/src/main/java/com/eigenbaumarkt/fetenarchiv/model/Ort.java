@@ -1,30 +1,49 @@
 package com.eigenbaumarkt.fetenarchiv.model;
 
-import java.time.LocalDate;
+import lombok.*;
 
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
+@Entity
+@Table(name = "orte")
 public class Ort extends Basis {
 
-    private String title;
-    private String zipCode;
+    @Column(name = "titel")
+    private String titel;
+
+    @Column(name = "plz")
+    private String plz;
+
+    @Column(name = "region")
     private String region;
+
+    @Column(name = "land")
     private String land;
-    private LocalDate creationStamp;
-    private LocalDate lastUpdatedStamp;
 
-    public LocalDate getCreationStamp() {
-        return creationStamp;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "ort")
+    private Set<Adresse> adresseSet = new HashSet<>();
+
+    public String getTitel() {
+        return titel;
     }
 
-    public void setCreationStamp(LocalDate creationStamp) {
-        this.creationStamp = creationStamp;
+    public void setTitel(String titel) {
+        this.titel = titel;
     }
 
-    public LocalDate getLastUpdatedStamp() {
-        return lastUpdatedStamp;
+    public String getPlz() {
+        return plz;
     }
 
-    public void setLastUpdatedStamp(LocalDate lastUpdatedStamp) {
-        this.lastUpdatedStamp = lastUpdatedStamp;
+    public void setPlz(String plz) {
+        this.plz = plz;
     }
 
     public String getRegion() {
@@ -43,19 +62,11 @@ public class Ort extends Basis {
         this.land = land;
     }
 
-    public String getTitle() {
-        return title;
+    public Set<Adresse> getAdresseSet() {
+        return adresseSet;
     }
 
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
-    public String getZipCode() {
-        return zipCode;
-    }
-
-    public void setZipCode(String zipCode) {
-        this.zipCode = zipCode;
+    public void setAdresseSet(Set<Adresse> adresseSet) {
+        this.adresseSet = adresseSet;
     }
 }

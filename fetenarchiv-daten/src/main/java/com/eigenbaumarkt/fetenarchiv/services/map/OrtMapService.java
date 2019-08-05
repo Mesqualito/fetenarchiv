@@ -2,12 +2,14 @@ package com.eigenbaumarkt.fetenarchiv.services.map;
 
 import com.eigenbaumarkt.fetenarchiv.model.Ort;
 import com.eigenbaumarkt.fetenarchiv.services.OrtService;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
 import java.util.Set;
 
 @Service
-public class OrtServiceMap extends AbstractMapService<Ort, Long> implements OrtService {
+@Profile({"default", "map"})
+public class OrtMapService extends AbstractMapService<Ort, Long> implements OrtService {
 
     @Override
     public Set<Ort> findAll() {
