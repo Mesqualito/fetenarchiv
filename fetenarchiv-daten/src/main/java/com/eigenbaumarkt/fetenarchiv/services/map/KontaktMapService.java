@@ -73,10 +73,11 @@ public class KontaktMapService extends AbstractMapService<Kontakt, Long> impleme
 
     @Override
     public Kontakt findByLastName(String lastName) {
-
-        // TODO
-        return null;
-
+        // Java 8 'stream':
+        return this.findAll()
+                .stream()
+                .filter(kontakt -> kontakt.getLastName().equalsIgnoreCase(lastName))
+                .findFirst()
+                .orElse(null);
     }
-
 }
