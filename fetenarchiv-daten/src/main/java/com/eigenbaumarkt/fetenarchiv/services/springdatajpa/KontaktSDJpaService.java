@@ -2,6 +2,8 @@ package com.eigenbaumarkt.fetenarchiv.services.springdatajpa;
 
 import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
 import com.eigenbaumarkt.fetenarchiv.repositories.KontaktRepository;
+import com.eigenbaumarkt.fetenarchiv.repositories.MediaRepository;
+import com.eigenbaumarkt.fetenarchiv.repositories.MediaTypRepository;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
@@ -14,9 +16,13 @@ import java.util.Set;
 public class KontaktSDJpaService implements KontaktService {
 
     private final KontaktRepository kontaktRepository;
+    private final MediaRepository mediaRepository;
+    private final MediaTypRepository mediaTypRepository;
 
-    public KontaktSDJpaService(KontaktRepository kontaktRepository) {
+    public KontaktSDJpaService(KontaktRepository kontaktRepository, MediaRepository mediaRepository, MediaTypRepository mediaTypRepository) {
         this.kontaktRepository = kontaktRepository;
+        this.mediaRepository = mediaRepository;
+        this.mediaTypRepository = mediaTypRepository;
     }
 
     @Override
