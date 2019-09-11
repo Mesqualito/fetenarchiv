@@ -1,4 +1,7 @@
 # fetenarchiv
+
+[![CircleCI](https://circleci.com/gh/Mesqualito/fetenarchiv.svg?style=svg)](https://circleci.com/gh/Mesqualito/fetenarchiv)
+
 Ein Archivsystem inklusive Mediaplayer der Freiwilligen Feuerwehr Lülsfeld
 (http://www.luelsfeld.de/index.php/sonstiges/feuerwehren/feuerwehr-luelsfeld)
 
