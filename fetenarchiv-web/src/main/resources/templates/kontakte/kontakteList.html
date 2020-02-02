@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
+<body>
+<h2>Kontakte</h2>
+<table id="feten" class="table table-striped">
+    <thead>
+    <tr>
+        <th style="width: 150px;">Name</th>
+        <th style="width: 200px;">Adresse</th>
+        <th>Stadt</th>
+        <th style="width: 120px">Telefon</th>
+        <th>Mediendateien</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="owner : ${selections}">
+        <td>
+            <a th:href="@{/kontakte/__${kontakt.id}__}" th:text="${kontakt.firstName + ' ' + kontakt.lastName}"/></a>
+        </td>
+        <td th:text="${kontakt.address}"/>
+        <td th:text="${kontakt.city}"/>
+        <td th:text="${kontakt.telephone}"/>
+        <td><span th:each="media : ${kontakt.media}" th:text="${media.title} "/></td>
+    </tr>
+    </tbody>
+</table>
+
+</body>
+</html>

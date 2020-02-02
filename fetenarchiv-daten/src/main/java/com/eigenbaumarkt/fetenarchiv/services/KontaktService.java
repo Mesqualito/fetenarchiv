@@ -6,4 +6,5 @@ public interface KontaktService extends CrudService<Kontakt, Long> {
 
     Kontakt findByLastName(String lastName);
 
+    /* List<Kontakt> findAllByLastNameLike(String lastName); */
 }

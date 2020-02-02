@@ -14,7 +14,8 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import java.util.HashSet;
 import java.util.Set;
 
-import static org.hamcrest.Matchers.hasSize;
+import static org.hamcrest.Matchers.*;
+import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -47,7 +48,7 @@ class KontaktControllerTest {
     }
 
     @Test
-    void listKontakts() throws Exception {
+    void listKontakte() throws Exception {
         when(kontaktService.findAll()).thenReturn(kontakte);
 
         mockMvc.perform(get("/kontakte"))
@@ -57,10 +58,10 @@ class KontaktControllerTest {
     }
 
     @Test
-    void listKontaktsByIndex() throws Exception {
+    void listKontakteByIndex() throws Exception {
         when(kontaktService.findAll()).thenReturn(kontakte);
 
-        mockMvc.perform(get("/kontakte/index"))
+        mockMvc.perform(get("/kontakte"))
                 .andExpect(status().isOk())
                 .andExpect(view().name("kontakte/index"))
                 .andExpect(model().attribute("kontakte", hasSize(2)));
@@ -70,9 +71,21 @@ class KontaktControllerTest {
     void findKontakte() throws Exception {
 
         mockMvc.perform(get("/kontakte/find"))
-                .andExpect(view().name("notimplemented"));
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/findKontakte"));
 
         // no interaction with Service, because still not implemented ;-)
         verifyZeroInteractions(kontaktService);
     }
+
+    @Test
+    void displayKontakt() throws Exception {
+        when(kontaktService.findById(anyLong())).thenReturn(Kontakt.builder().id(1L).build());
+
+        mockMvc.perform(get("/kontakte/123"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/kontaktDetails"))
+                .andExpect(model().attribute("kontakt", hasProperty("id", is(1L))));
+    }
+
 }

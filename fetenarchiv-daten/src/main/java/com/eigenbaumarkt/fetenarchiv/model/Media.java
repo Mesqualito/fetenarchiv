@@ -3,6 +3,8 @@ package com.eigenbaumarkt.fetenarchiv.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Getter
 @Setter
@@ -12,6 +14,22 @@ import javax.persistence.*;
 @Entity
 @Table(name = "medien")
 public class Media extends Basis {
+
+    /*
+    @Builder
+    public Media(String titel, MediaTyp mediaTyp, Kontakt kontakt, Set<Termin> terminSet) {
+        super();
+        this.titel = titel;
+        this.mediaTyp = mediaTyp;
+        this.kontakt = kontakt;
+
+        if (terminSet == null || terminSet.size() > 0) {
+            this.terminSet = terminSet;
+        }
+
+    }
+
+     */
 
     @Column(name = "titel")
     private String titel;
@@ -27,7 +45,6 @@ public class Media extends Basis {
     @JoinColumn(name = "kontakt_id")
     private Kontakt kontakt;
 
-    @ManyToOne
-    @JoinColumn(name = "termin_id")
-    private Termin termin;
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
+    private Set<Termin> terminSet = new HashSet<>();
 }

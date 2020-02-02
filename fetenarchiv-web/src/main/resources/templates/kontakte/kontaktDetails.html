@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
+<body>
+<h2>Kontakt-Informationen</h2>
+<table class="table table-striped" th:object="${kontakt}">
+    <tr>
+        <th>Name</th>
+        <td><b th:text="*{firstName + ' ' + lastName}"></b></td>
+    </tr>
+    <!--
+    <tr>
+        <th>Adresse</th>
+        <td th:text="*{address}" /></td>
+    </tr>
+    <tr>
+        <th>Stadt</th>
+        <td th:text="*{city}" /></td>
+    </tr>
+    <tr>
+        <th>Telefon</th>
+        <td th:text="*{telephone}" /></td>
+    </tr>
+    -->
+</table>
+
+<a th:href="@{{id}/edit(id=${kontakt.id})}" class="btn btn-default">Kontakt ändern</a>
+<a th:href="@{{id}/media/new(id=${kontakt.id})}" class="btn btn-default">Neue Mediendatei hinzu fügen</a>
+<br />
+<h2>Medien und Termine</h2>
+<table class="table table-striped">
+    <tr th:each="media : ${kontakt.mediaSet}">
+        <td valign="top">
+            <dl class="dl-horizontal">
+                <dt>Titel</dt>
+                <dd th:text="${media.titel}" /></dd>
+                <dt>Erstellungsdatum</dt>
+                <dd th:text="${#temporals.format(media.creationStamp, 'yyyy-MM-dd')}" /></dd>
+                <dt>Typ</dt>
+                <dd th:text="${media.mediaTyp}" /></dd>
+            </dl>
+        </td>
+        <td valign="top">
+            <table class="table-condensed">
+                <thead>
+                <tr>
+                    <th>Termin</th>
+                    <th>Beschreibung</th>
+                </tr>
+                </thead>
+                <tr th:each="termin : ${media.terminSet}">
+                    <td th:text="${#temporals.format(termin.date, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${termin?.description}"></td>
+                </tr>
+                <tr>
+                    <td><a th:href="@{{kontaktId}/media/{mediaId}/edit(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>
+                    <td><a th:href="@{{kontaktId}/media/{mediaId}/termine/new(kontaktId=${kontakt.id},mediaId=${media.id})}">Termin hinzu fügen</a></td>
+                </tr>
+            </table>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

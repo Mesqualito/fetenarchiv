@@ -2,10 +2,7 @@ package com.eigenbaumarkt.fetenarchiv.model;
 
 import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.time.LocalDate;
 
 @Getter
@@ -25,4 +22,9 @@ public class Termin extends Basis {
 
     @OneToOne
     private Kontakt kontakt;
+
+    @ManyToOne
+    @JoinColumn(name = "media_id")
+    private Media media;
+
 }
