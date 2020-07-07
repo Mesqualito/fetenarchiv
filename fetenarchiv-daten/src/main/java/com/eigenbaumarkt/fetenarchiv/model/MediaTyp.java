@@ -20,4 +20,9 @@ public class MediaTyp extends Basis {
 
     @Column(name = "beschreibung")
     private String beschreibung;
+
+    @Override
+    public String toString() {
+        return titel;
+    }
 }
