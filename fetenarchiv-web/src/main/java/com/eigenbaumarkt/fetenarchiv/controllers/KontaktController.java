@@ -25,11 +25,12 @@ public class KontaktController {
         this.kontaktService = kontaktService;
     }
 
-    /* control "magic" of Spring framework binding http variables coming in to java objects since Spring 1.2 */
+    /* control 'magic' of Spring framework binding http variables coming in to java objects since Spring 1.2 */
     /* see: https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/WebDataBinder.html */
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
-        /* we don't want to allow the webforms to address the 'id'-property in our stateless system */
+        /* SECURITY: we don't want to allow the public available webforms,
+        e.g. 'createOrUpdateKontaktForm.html', to address the 'id'-property in our stateless system */
         dataBinder.setDisallowedFields("id");
     }
 
