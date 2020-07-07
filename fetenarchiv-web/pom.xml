@@ -97,14 +97,14 @@
                     </execution>
                 </executions>
                 <configuration>
-                    <contextPath>${basedir}</contextPath>
+                    <contextPath>${project.basedir}</contextPath>
                     <ignoreMissingResources>false</ignoreMissingResources>
                     <targetGroups>fetenarchiv</targetGroups>
                     <minimize>true</minimize>
-                    <wroFile>${basedir}/src/main/wro/wro.xml</wroFile>
-                    <extraConfigFile>${basedir}/src/main/wro/wro.properties</extraConfigFile>
-                    <contextFolder>${basedir}/src/main/less</contextFolder>
-                    <cssDestinationFolder>${project.build.directory}/classes/static/resources/css
+                    <wroFile>${project.basedir}/src/main/wro/wro.xml</wroFile>
+                    <extraConfigFile>${project.basedir}/src/main/wro/wro.properties</extraConfigFile>
+                    <contextFolder>${project.basedir}/src/main/less</contextFolder>
+                    <cssDestinationFolder>${project.build.directory}/classes/static/resources/css/
                     </cssDestinationFolder>
                 </configuration>
                 <dependencies>
