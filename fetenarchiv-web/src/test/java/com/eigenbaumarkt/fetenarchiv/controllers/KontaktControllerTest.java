@@ -11,11 +11,13 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
+import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.verifyZeroInteractions;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -48,34 +50,37 @@ class KontaktControllerTest {
     }
 
     @Test
-    void listKontakte() throws Exception {
-        when(kontaktService.findAll()).thenReturn(kontakte);
-
-        mockMvc.perform(get("/kontakte"))
-                .andExpect(status().isOk())
-        .andExpect(view().name("kontakte/index"))
-        .andExpect(model().attribute("kontakte", hasSize(2)));
-    }
-
-    @Test
-    void listKontakteByIndex() throws Exception {
-        when(kontaktService.findAll()).thenReturn(kontakte);
-
-        mockMvc.perform(get("/kontakte"))
-                .andExpect(status().isOk())
-                .andExpect(view().name("kontakte/index"))
-                .andExpect(model().attribute("kontakte", hasSize(2)));
-    }
-
-    @Test
     void findKontakte() throws Exception {
 
         mockMvc.perform(get("/kontakte/find"))
                 .andExpect(status().isOk())
-                .andExpect(view().name("kontakte/findKontakte"));
+                .andExpect(view().name("kontakte/findKontakte"))
+                .andExpect(model().attributeExists("kontakt"));
 
         // no interaction with Service, because still not implemented ;-)
         verifyZeroInteractions(kontaktService);
+    }
+
+    @Test
+    void processFindFormReturnMany() throws Exception {
+        when(kontaktService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Kontakt.builder().id(1L).build(),
+                Kontakt.builder().id(2L).build()));
+
+        mockMvc.perform(get("/kontakte"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/kontaktListe"))
+                .andExpect(model().attribute("auswahl", hasSize(2)));
+    }
+
+    @Test
+    void processFindFormReturnOne() throws Exception {
+        when(kontaktService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Kontakt.builder().id(1L).build()));
+
+        mockMvc.perform(get("/kontakte"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/kontakte/1"))
+                // .andExpect(model().attribute("kontakte", hasProperty("id", is(1L))))
+                ;
     }
 
     @Test

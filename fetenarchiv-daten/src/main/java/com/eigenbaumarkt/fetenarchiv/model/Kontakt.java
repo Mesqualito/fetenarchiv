@@ -18,11 +18,15 @@ import java.util.Set;
 public class Kontakt extends Person {
 
     @Builder
-    public Kontakt(Long id, LocalDate creationStamp, LocalDate lastUpdatedStamp, String firstName, String lastName, LocalDate geburtstag, Adresse adresse, Set<Media> mediaSet) {
+    public Kontakt(Long id, LocalDate creationStamp, LocalDate lastUpdatedStamp, String firstName, String lastName,
+                   LocalDate geburtstag, Adresse adresse, Set<Media> mediaSet) {
         super(id, creationStamp, lastUpdatedStamp, firstName, lastName);
         this.geburtstag = geburtstag;
         this.adresse = adresse;
-        this.mediaSet = mediaSet;
+
+        if(mediaSet != null) {
+            this.mediaSet = mediaSet;
+        }
     }
 
     @Column(name = "geburtstag")
@@ -33,4 +37,30 @@ public class Kontakt extends Person {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "kontakt")
     private Set<Media> mediaSet = new HashSet<>();
+
+    /**
+     * Return the Media with the given name, or null if none found for this Kontakt.
+     *
+     * @param name to test
+     * @return true if media name is already in use
+     */
+    public Media getMedia(String name) {
+        return getMedia(name);
+    }
+
+    /*
+    public Media getMedia(String name, boolean ignoreNew) {
+        name = name.toLowerCase();
+        for (Media media : mediaSet) {
+            if (!ignoreNew || !media.isNew()) {
+                String compName = media.getName();
+                compName = compName.toLowerCase();
+                if (compName.equals(name)) {
+                    return media;
+                }
+            }
+        }
+        return null;
+    }
+    */
 }

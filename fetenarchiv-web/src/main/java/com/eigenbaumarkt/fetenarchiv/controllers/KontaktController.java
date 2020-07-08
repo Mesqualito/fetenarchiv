@@ -4,6 +4,7 @@ import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
+import java.util.List;
 
 @RequestMapping({"/kontakte"})
 @Controller
@@ -34,24 +35,16 @@ public class KontaktController {
         dataBinder.setDisallowedFields("id");
     }
 
-    @RequestMapping({"", "/", "/index", "/index.htm", "/index.html"})
-    public String listKontakts(Model model){
-
-        Set<Kontakt> kontakte = kontaktService.findAll();
-        model.addAttribute("kontakte", kontakte);
-
-        return "kontakte/index";
-    }
-
     @RequestMapping({"/find"})
     public String findKontakte(Model model){
         model.addAttribute("kontakt", Kontakt.builder().build());
         return "kontakte/findKontakte";
     }
 
-    /*
+    // GetMapping for "/kontakte" ("/kontakte" is set as startpoint/root for this controller)
     @GetMapping
     public String processFindForm(Kontakt kontakt, BindingResult result, Model model) {
+
         // allow parameterless GET request for '/kontakte' to return all records
         if (kontakt.getLastName() == null) {
             kontakt.setLastName(""); // empty string signifies broadest possible search
@@ -67,14 +60,13 @@ public class KontaktController {
         } else if (results.size() == 1) {
             // 1 kontakt found
             kontakt = results.get(0);
-            return "redicret:/kontakte/" + kontakt.getId();
+            return "redirect:/kontakte/" + kontakt.getId();
         } else {
             // multiple kontakte found
-            model.addAttribute("selections", results);
-            return "kontakte/kontakteList";
+            model.addAttribute("auswahl", results);
+            return "kontakte/kontaktListe";
         }
     }
-    */
 
     @GetMapping("/{kontaktId}")
     public ModelAndView showKontakt(@PathVariable Long kontaktId) {
