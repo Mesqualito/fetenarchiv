@@ -4,6 +4,7 @@ import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import java.util.Set;
+import java.util.List;
 
 @RequestMapping({"/kontakte"})
 @Controller
@@ -25,21 +26,13 @@ public class KontaktController {
         this.kontaktService = kontaktService;
     }
 
-    /* control "magic" of Spring framework binding http variables coming in to java objects since Spring 1.2 */
+    /* control 'magic' of Spring framework binding http variables coming in to java objects since Spring 1.2 */
     /* see: https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/web/bind/WebDataBinder.html */
     @InitBinder
     public void setAllowedFields(WebDataBinder dataBinder) {
-        /* we don't want to allow the webforms to address the 'id'-property in our stateless system */
+        /* SECURITY: we don't want to allow the public available webforms,
+        e.g. 'createOrUpdateKontaktForm.html', to address the 'id'-property in our stateless system */
         dataBinder.setDisallowedFields("id");
-    }
-
-    @RequestMapping({"", "/", "/index", "/index.htm", "/index.html"})
-    public String listKontakts(Model model){
-
-        Set<Kontakt> kontakte = kontaktService.findAll();
-        model.addAttribute("kontakte", kontakte);
-
-        return "kontakte/index";
     }
 
     @RequestMapping({"/find"})
@@ -48,9 +41,10 @@ public class KontaktController {
         return "kontakte/findKontakte";
     }
 
-    /*
+    // GetMapping for "/kontakte" ("/kontakte" is set as startpoint/root for this controller)
     @GetMapping
     public String processFindForm(Kontakt kontakt, BindingResult result, Model model) {
+
         // allow parameterless GET request for '/kontakte' to return all records
         if (kontakt.getLastName() == null) {
             kontakt.setLastName(""); // empty string signifies broadest possible search
@@ -66,14 +60,13 @@ public class KontaktController {
         } else if (results.size() == 1) {
             // 1 kontakt found
             kontakt = results.get(0);
-            return "redicret:/kontakte/" + kontakt.getId();
+            return "redirect:/kontakte/" + kontakt.getId();
         } else {
             // multiple kontakte found
-            model.addAttribute("selections", results);
-            return "kontakte/kontakteList";
+            model.addAttribute("auswahl", results);
+            return "kontakte/kontaktListe";
         }
     }
-    */
 
     @GetMapping("/{kontaktId}")
     public ModelAndView showKontakt(@PathVariable Long kontaktId) {

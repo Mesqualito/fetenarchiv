@@ -8,6 +8,7 @@ import com.eigenbaumarkt.fetenarchiv.services.MediaTypService;
 import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Set;
 
 @Service
@@ -79,5 +80,12 @@ public class KontaktMapService extends AbstractMapService<Kontakt, Long> impleme
                 .filter(kontakt -> kontakt.getLastName().equalsIgnoreCase(lastName))
                 .findFirst()
                 .orElse(null);
+    }
+
+    @Override
+    public List<Kontakt> findAllByLastNameLike(String lastName) {
+
+        // ToDo: implement method for map
+        return null;
     }
 }
