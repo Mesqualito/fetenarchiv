@@ -48,8 +48,8 @@
                 </tr>
                 </thead>
                 <tr th:each="termin : ${media.terminSet}">
-                    <td th:text="${#temporals.format(termin.date, 'yyyy-MM-dd')}"></td>
-                    <td th:text="${termin?.description}"></td>
+                    <td th:text="${#temporals.format(termin.datum, 'yyyy-MM-dd')}"></td>
+                    <td th:text="${termin?.titel}"></td>
                 </tr>
                 <tr>
                     <td><a th:href="@{{kontaktId}/media/{mediaId}/edit(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>

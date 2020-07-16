@@ -6,21 +6,22 @@
     <thead>
     <tr>
         <th style="width: 150px;">Name</th>
-        <th style="width: 200px;">Adresse</th>
-        <th>Stadt</th>
-        <th style="width: 120px">Telefon</th>
+        <th style="width: 200px;">Straße</th>
+        <th>Hausnummer</th>
+        <th style="width: 120px">Ort</th>
         <th>Mediendateien</th>
     </tr>
     </thead>
     <tbody>
-    <tr th:each="owner : ${selections}">
+    <tr th:each="kontakt : ${auswahl}">
         <td>
             <a th:href="@{/kontakte/__${kontakt.id}__}" th:text="${kontakt.firstName + ' ' + kontakt.lastName}"/></a>
         </td>
-        <td th:text="${kontakt.address}"/>
-        <td th:text="${kontakt.city}"/>
-        <td th:text="${kontakt.telephone}"/>
-        <td><span th:each="media : ${kontakt.media}" th:text="${media.title} "/></td>
+        <td th:text="${kontakt.adresse.strasse}"/>
+        <td th:text="${kontakt.adresse.hausNr}"/>
+        <td th:text="${kontakt.adresse.ort.titel}"/>
+
+        <td><span th:each="media:${kontakt.mediaSet}" th:text="${media.mediaTyp} "/></td>
     </tr>
     </tbody>
 </table>
