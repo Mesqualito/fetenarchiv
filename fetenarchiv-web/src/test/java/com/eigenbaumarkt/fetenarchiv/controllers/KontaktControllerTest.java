@@ -5,6 +5,7 @@ import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.ArgumentMatchers;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
@@ -18,9 +19,9 @@ import java.util.Set;
 import static org.hamcrest.Matchers.*;
 import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.ArgumentMatchers.anyString;
-import static org.mockito.Mockito.verifyZeroInteractions;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,7 +58,6 @@ class KontaktControllerTest {
                 .andExpect(view().name("kontakte/findKontakte"))
                 .andExpect(model().attributeExists("kontakt"));
 
-        // no interaction with Service, because still not implemented ;-)
         verifyZeroInteractions(kontaktService);
     }
 
@@ -93,4 +93,49 @@ class KontaktControllerTest {
                 .andExpect(model().attribute("kontakt", hasProperty("id", is(1L))));
     }
 
+    @Test
+    void initCreationForm() throws Exception {
+        mockMvc.perform(get("/kontakte/neu"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/kontaktAnlegenOderUpdatenForm"))
+                .andExpect(model().attributeExists("kontakt"));
+
+        verifyZeroInteractions(kontaktService);
+    }
+
+    @Test
+    void processCreationForm() throws Exception {
+        when(kontaktService.save(ArgumentMatchers.any())).thenReturn(Kontakt.builder().id(1L).build());
+
+        mockMvc.perform(post("/kontakte/neu"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/kontakte/1"))
+                .andExpect(model().attributeExists("kontakt"));
+
+        verify(kontaktService).save(ArgumentMatchers.any());
+    }
+
+    @Test
+    void initUpdateKontaktForm() throws Exception {
+        when(kontaktService.findById(anyLong())).thenReturn(Kontakt.builder().id(1L).build());
+
+        mockMvc.perform(get("/kontakte/1/aendern"))
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/kontaktAnlegenOderUpdatenForm"))
+                .andExpect(model().attributeExists("kontakt"));
+
+        verifyZeroInteractions(kontaktService);
+    }
+
+    @Test
+    void processUpdateKontaktForm() throws Exception {
+        when(kontaktService.save(ArgumentMatchers.any())).thenReturn(Kontakt.builder().id(1L).build());
+
+        mockMvc.perform(post("/kontakte/1/aendern"))
+                .andExpect(status().is3xxRedirection())
+                .andExpect(view().name("redirect:/kontakte/1"))
+                .andExpect(model().attributeExists("kontakt"));
+
+        verify(kontaktService).save(ArgumentMatchers.any());
+    }
 }

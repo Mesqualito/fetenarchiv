@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
+<html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
 <body>
 <h2>Kontakt-Informationen</h2>
 <table class="table table-striped" th:object="${kontakt}">
@@ -23,23 +23,23 @@
     -->
 </table>
 
-<a th:href="@{{id}/edit(id=${kontakt.id})}" class="btn btn-default">Kontakt ändern</a>
+<a th:href="@{{id}/aendern(id=${kontakt.id})}" class="btn btn-default">Kontakt ändern</a>
 <a th:href="@{{id}/media/new(id=${kontakt.id})}" class="btn btn-default">Neue Mediendatei hinzu fügen</a>
 <br />
 <h2>Medien und Termine</h2>
 <table class="table table-striped">
     <tr th:each="media : ${kontakt.mediaSet}">
-        <td valign="top">
+        <td>
             <dl class="dl-horizontal">
                 <dt>Titel</dt>
-                <dd th:text="${media.titel}" /></dd>
+                <dd th:text="${media.titel}"></dd>
                 <dt>Erstellungsdatum</dt>
-                <dd th:text="${#temporals.format(media.creationStamp, 'yyyy-MM-dd')}" /></dd>
+                <dd th:text="${#temporals.format(media.creationStamp, 'yyyy-MM-dd')}"></dd>
                 <dt>Typ</dt>
-                <dd th:text="${media.mediaTyp}" /></dd>
+                <dd th:text="${media.mediaTyp}"></dd>
             </dl>
         </td>
-        <td valign="top">
+        <td>
             <table class="table-condensed">
                 <thead>
                 <tr>
@@ -52,8 +52,8 @@
                     <td th:text="${termin?.titel}"></td>
                 </tr>
                 <tr>
-                    <td><a th:href="@{{kontaktId}/media/{mediaId}/edit(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>
-                    <td><a th:href="@{{kontaktId}/media/{mediaId}/termine/new(kontaktId=${kontakt.id},mediaId=${media.id})}">Termin hinzu fügen</a></td>
+                    <td><a th:href="@{{kontaktId}/media/{mediaId}/aendern(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>
+                    <td><a th:href="@{{kontaktId}/media/{mediaId}/termine/neu(kontaktId=${kontakt.id},mediaId=${media.id})}">Termin hinzu fügen</a></td>
                 </tr>
             </table>
         </td>

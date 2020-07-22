@@ -1,4 +1,4 @@
-<html xmlns:th="http://www.thymeleaf.org"
+<html lang="de" xmlns:th="http://www.thymeleaf.org"
       th:replace="~{fragments/layout :: layout (~{::body},'kontakte')}">
 
 <body>
@@ -6,18 +6,23 @@
 <h2>Kontakt</h2>
 <form th:object="${kontakt}" class="form-horizontal" id="add-kontakt-form" method="post">
     <div class="form-group has-feedback">
-        <input th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
-        <input th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+        <label>
+            <input th:replace="~{fragments/inputField :: input ('First Name', 'firstName', 'text')}" />
+        </label>
+        <label>
+            <input th:replace="~{fragments/inputField :: input ('Last Name', 'lastName', 'text')}" />
+        </label>
+        <!--
         <input th:replace="~{fragments/inputField :: input ('Address', 'address', 'text')}" />
         <input th:replace="~{fragments/inputField :: input ('City', 'city', 'text')}" />
         <input th:replace="~{fragments/inputField :: input ('Telephone', 'telephone', 'text')}" />
+        -->
     </div>
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">
-            <button
-                    th:with="text=${kontakt['new']} ? 'Kontakt hinzu fügen' : 'Kontakt ändern'"
-                    class="btn btn-default" type="submit" th:text="${text}">Add
-                Owner</button>
+            <!-- 'th:with="text=${kontakt['new']}' bezieht sich auf 'isNew()' aus der 'Basis'-Klasse -->
+            <button th:with="text=${kontakt['new']} ? 'Kontakt hinzu fügen' : 'Kontakt ändern'"
+                    class="btn btn-default" type="submit" th:text="${text}">Add Contact</button>
         </div>
     </div>
 </form>

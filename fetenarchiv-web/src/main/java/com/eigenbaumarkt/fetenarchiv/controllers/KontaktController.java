@@ -6,19 +6,17 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RequestMapping({"/kontakte"})
 @Controller
 public class KontaktController {
 
-    private static final String VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM = "kontakte/createOrUpdateKontaktForm";
+    private static final String VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM = "kontakte/kontaktAnlegenOderUpdatenForm";
 
     private final KontaktService kontaktService;
 
@@ -75,29 +73,38 @@ public class KontaktController {
         return mav;
     }
 
-    @GetMapping("/new")
+    @GetMapping("/neu")
     public String initCreationForm(Model model) {
         model.addAttribute("kontakt", Kontakt.builder().build());
         return VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM;
     }
 
-    /*
-    @PostMapping("/{kontaktId}/edit")
-    public String initUpdateKontaktForm(@PathVariable Long kontaktId, Model model) {
-        model.addAttribute(kontaktService.findById(kontaktId));
-        return VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM;
-    }
-
-    @PostMapping("/{kontaktId}/edit")
-    public String processUpdateKontaktForm(@Valid Kontakt kontakt, BindingResult result, @PathVariable Long kontaktId) {
-        if (result.hasErrors()) {
+    /* @RequestMapping(value="/neu", method = RequestMethod.POST) */
+    @PostMapping("/neu")
+    public String processCreationForm(@Valid Kontakt kontakt, BindingResult result) {
+        if(result.hasErrors()) {
             return VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM;
         } else {
-            kontakt.setId(kontaktId);
             Kontakt savedKontakt = kontaktService.save(kontakt);
             return "redirect:/kontakte/" + savedKontakt.getId();
         }
     }
 
-     */
+    @GetMapping("/{kontaktId}/aendern")
+    public String initUpdateKontaktForm(@PathVariable Long kontaktId, Model model) {
+        model.addAttribute(kontaktService.findById(kontaktId));
+        return VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/{kontaktId}/aendern")
+    public String processUpdateKontaktForm(@Valid Kontakt kontakt, BindingResult result, @PathVariable Long kontaktId) {
+        if (result.hasErrors()) {
+            return VIEWS_KONTAKT_CREATE_OR_UPDATE_FORM;
+        } else {
+            kontakt.setId(kontaktId);
+            // when saving, get back the saved object:
+            Kontakt savedKontakt = kontaktService.save(kontakt);
+            return "redirect:/kontakte/" + savedKontakt.getId();
+        }
+    }
 }

@@ -111,6 +111,7 @@ public class DataInitializer implements CommandLineRunner {
         date = LocalDate.now();
         media1.setCreationStamp(date);
         media1.setLastUpdatedStamp(date);
+        media1.setTitel("grossvogl.jpg");
         media1.setBeschreibung("Das erste Medien-Objekt");
 
         MediaTyp mediaTyp1 = new MediaTyp();
@@ -130,6 +131,7 @@ public class DataInitializer implements CommandLineRunner {
         date = LocalDate.now();
         media2.setCreationStamp(date);
         media2.setLastUpdatedStamp(date);
+        media2.setTitel("Kleine_Hunde_beißen.avi");
         media2.setBeschreibung("Das zweite Medien-Objekt");
 
         MediaTyp mediaTyp2 = new MediaTyp();

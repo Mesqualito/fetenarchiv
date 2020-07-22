@@ -32,4 +32,10 @@ public class Basis implements Serializable {
     @Column(name = "last_updated_stamp")
     private LocalDate lastUpdatedStamp;
 
+    // Exception evaluating SpringEL expression: "kontakt['neu']" (template: "kontakte/kontaktAnlegenOderUpdatenForm"
+    // Evaluierung für den Button "Kontakt neu" oder "Kontakt ändern" schlägt fehl ohne:
+    public boolean isNew() {
+        return this.id == null;
+    }
+
 }

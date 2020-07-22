@@ -6,8 +6,6 @@
     <thead>
     <tr>
         <th style="width: 150px;">Name</th>
-        <th style="width: 200px;">Straße</th>
-        <th>Hausnummer</th>
         <th style="width: 120px">Ort</th>
         <th>Mediendateien</th>
     </tr>
@@ -17,11 +15,10 @@
         <td>
             <a th:href="@{/kontakte/__${kontakt.id}__}" th:text="${kontakt.firstName + ' ' + kontakt.lastName}"/></a>
         </td>
-        <td th:text="${kontakt.adresse.strasse}"/>
-        <td th:text="${kontakt.adresse.hausNr}"/>
-        <td th:text="${kontakt.adresse.ort.titel}"/>
 
-        <td><span th:each="media:${kontakt.mediaSet}" th:text="${media.mediaTyp} "/></td>
+        <td><span th:each="adresse:${kontakt.adresse}" th:text="${adresse.ort.titel}"/>
+
+        <td><span th:each="media:${kontakt.mediaSet}" th:text="${media.titel} + ' (' + ${media.mediaTyp} + ')' "/></td>
     </tr>
     </tbody>
 </table>
