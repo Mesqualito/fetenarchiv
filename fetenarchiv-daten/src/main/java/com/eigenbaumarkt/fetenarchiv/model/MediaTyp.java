@@ -10,10 +10,15 @@ import javax.persistence.Table;
 @Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "typen")
 public class MediaTyp extends Basis {
+
+    @Builder
+    public MediaTyp(Long id, String titel) {
+        super(id);
+        this.titel = titel;
+    }
 
     @Column(name = "titel")
     private String titel;
