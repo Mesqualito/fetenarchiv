@@ -3,22 +3,20 @@ package com.eigenbaumarkt.fetenarchiv.model;
 import lombok.*;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.HashSet;
 import java.util.Set;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
-@Builder
 @Entity
 @Table(name = "medien")
 public class Media extends Basis {
 
-    /*
     @Builder
-    public Media(String titel, MediaTyp mediaTyp, Kontakt kontakt, Set<Termin> terminSet) {
-        super();
+    public Media(Long id, String titel, MediaTyp mediaTyp, Kontakt kontakt, Set<Termin> terminSet, Timestamp creationStamp, Timestamp lastUpdatedStamp) {
+        super(id, creationStamp, lastUpdatedStamp);
         this.titel = titel;
         this.mediaTyp = mediaTyp;
         this.kontakt = kontakt;
@@ -28,8 +26,6 @@ public class Media extends Basis {
         }
 
     }
-
-     */
 
     @Column(name = "titel")
     private String titel;
@@ -47,4 +43,5 @@ public class Media extends Basis {
 
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "media")
     private Set<Termin> terminSet = new HashSet<>();
+
 }

@@ -1,24 +1,27 @@
 package com.eigenbaumarkt.fetenarchiv.controllers;
 
 import com.eigenbaumarkt.fetenarchiv.model.Kontakt;
+import com.eigenbaumarkt.fetenarchiv.model.Media;
 import com.eigenbaumarkt.fetenarchiv.model.MediaTyp;
 import com.eigenbaumarkt.fetenarchiv.services.KontaktService;
 import com.eigenbaumarkt.fetenarchiv.services.MediaService;
 import com.eigenbaumarkt.fetenarchiv.services.MediaTypService;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.util.StringUtils;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.Collection;
 
 @Controller
 @RequestMapping("/kontakte/{kontaktId}")
 public class MediaController {
 
-    private static final String VIEWS_MEDIA_CREATE_OR_UPDATE_FORM = "medien/mediaAnlegenOderUpdatenForm";
+    private static final String VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM = "medien/mediaAnlegenOderUpdatenForm";
     private final MediaService mediaService;
     private final MediaTypService mediaTypService;
     private final KontaktService kontaktService;
@@ -44,6 +47,30 @@ public class MediaController {
         this.mediaService = mediaService;
         this.mediaTypService = mediaTypService;
         this.kontaktService = kontaktService;
+    }
+
+    @GetMapping("/medien/neu")
+    public String initCreationForm(Kontakt kontakt, Model model) {
+        Media media = new Media();
+        media.setKontakt(kontakt);
+        model.addAttribute("media", media);
+        return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/medien/neu")
+    public String processCreationForm(Kontakt kontakt, @Valid Media media, BindingResult result, ModelMap model) {
+        if (StringUtils.hasLength(media.getTitel()) && media.isNew() && kontakt.getMedia(media.getTitel(), true) != null){
+            result.rejectValue("titel", "Duplikat", "existiert bereits");
+        }
+        kontakt.getMediaSet().add(media);
+        if (result.hasErrors()) {
+            model.put("media", media);
+            return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
+        } else {
+            mediaService.save(media);
+
+            return "redirect:/kontakte/" + kontakt.getId();
+        }
     }
 
 }

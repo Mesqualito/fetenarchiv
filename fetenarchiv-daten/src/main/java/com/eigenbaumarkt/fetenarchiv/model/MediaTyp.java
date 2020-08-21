@@ -5,19 +5,20 @@ import lombok.*;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
 @NoArgsConstructor
-@AllArgsConstructor
 @Entity
 @Table(name = "typen")
 public class MediaTyp extends Basis {
 
     @Builder
-    public MediaTyp(Long id, String titel) {
-        super(id);
+    public MediaTyp(Long id, String titel, String beschreibung, Timestamp creationStamp, Timestamp lastUpdatedStamp) {
+        super(id, creationStamp, lastUpdatedStamp);
         this.titel = titel;
+        this.beschreibung = beschreibung;
     }
 
     @Column(name = "titel")

@@ -5,6 +5,7 @@ import com.eigenbaumarkt.fetenarchiv.services.*;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
+import java.sql.Timestamp;
 import java.time.LocalDate;
 
 @Component
@@ -43,21 +44,14 @@ public class DataInitializer implements CommandLineRunner {
 
     private void loadData() {
         Kontakt kontakt1 = new Kontakt();
-        LocalDate date = LocalDate.now();
-        kontakt1.setCreationStamp(date);
-        kontakt1.setLastUpdatedStamp(date);
         kontakt1.setFirstName("Manfred");
         kontakt1.setLastName("Krug");
 
         Adresse adresse1 = new Adresse();
-        adresse1.setCreationStamp(date);
-        adresse1.setLastUpdatedStamp(date);
         adresse1.setStrasse("Wollinger Weg");
         adresse1.setHausNr("23");
 
         Ort ort1 = new Ort();
-        ort1.setCreationStamp(date);
-        ort1.setLastUpdatedStamp(date);
         ort1.setTitel("Oxfurthing");
         ort1.setPlz("83H-25");
         ort1.setLand("Deutschland");
@@ -74,21 +68,14 @@ public class DataInitializer implements CommandLineRunner {
         kontaktService.save(kontakt1);
 
         Kontakt kontakt2 = new Kontakt();
-        date = LocalDate.now();
-        kontakt2.setCreationStamp(date);
-        kontakt2.setLastUpdatedStamp(date);
         kontakt2.setFirstName("Ullrich");
         kontakt2.setLastName("Tramsfeld");
 
         Adresse adresse2 = new Adresse();
-        adresse2.setCreationStamp(date);
-        adresse2.setLastUpdatedStamp(date);
         adresse2.setStrasse("Butzenbergstr.");
         adresse2.setHausNr("5");
 
         Ort ort2 = new Ort();
-        ort2.setCreationStamp(date);
-        ort2.setLastUpdatedStamp(date);
         ort2.setTitel("Munsfelden");
         ort2.setPlz("86774");
         ort2.setLand("Deutschland");
@@ -108,15 +95,10 @@ public class DataInitializer implements CommandLineRunner {
         System.out.println(kontakt1.getFirstName() + " " + kontakt1.getLastName() + ", " + kontakt2.getFirstName() + " " + kontakt2.getLastName());
 
         Media media1 = new Media();
-        date = LocalDate.now();
-        media1.setCreationStamp(date);
-        media1.setLastUpdatedStamp(date);
         media1.setTitel("grossvogl.jpg");
         media1.setBeschreibung("Das erste Medien-Objekt");
 
         MediaTyp mediaTyp1 = new MediaTyp();
-        mediaTyp1.setCreationStamp(date);
-        mediaTyp1.setLastUpdatedStamp(date);
         mediaTyp1.setTitel("Bilddatei");
         mediaTyp1.setBeschreibung("Bilddateien in verschiedenen Formaten");
 
@@ -128,15 +110,10 @@ public class DataInitializer implements CommandLineRunner {
         Media savedMedia1 = mediaService.save(media1);
 
         Media media2 = new Media();
-        date = LocalDate.now();
-        media2.setCreationStamp(date);
-        media2.setLastUpdatedStamp(date);
         media2.setTitel("Kleine_Hunde_beißen.avi");
         media2.setBeschreibung("Das zweite Medien-Objekt");
 
         MediaTyp mediaTyp2 = new MediaTyp();
-        mediaTyp2.setCreationStamp(date);
-        mediaTyp2.setLastUpdatedStamp(date);
         mediaTyp2.setTitel("Filmdatei");
         mediaTyp2.setBeschreibung("Filmdateien in verschiedenen Formaten");
 
