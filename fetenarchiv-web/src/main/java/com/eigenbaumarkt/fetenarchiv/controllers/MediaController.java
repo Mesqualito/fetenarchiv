@@ -21,7 +21,7 @@ import java.util.Collection;
 @RequestMapping("/kontakte/{kontaktId}")
 public class MediaController {
 
-    private static final String VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM = "medien/mediaAnlegenOderUpdatenForm";
+    private static final String VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM = "medien/mediaAnlegenOderAendernForm";
     private final MediaService mediaService;
     private final MediaTypService mediaTypService;
     private final KontaktService kontaktService;
