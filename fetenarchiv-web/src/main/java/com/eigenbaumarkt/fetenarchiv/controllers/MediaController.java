@@ -53,6 +53,7 @@ public class MediaController {
     public String initCreationForm(Kontakt kontakt, Model model) {
         Media media = new Media();
         kontakt.getMediaSet().add(media);
+        media.setKontakt(kontakt);
         model.addAttribute("media", media);
         return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
     }
