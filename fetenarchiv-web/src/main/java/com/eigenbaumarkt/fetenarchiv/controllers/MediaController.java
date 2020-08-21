@@ -28,7 +28,7 @@ public class MediaController {
 
     // @ModelAttribute stellt die angefragten Daten für jede Methode innerhalb der Klasse
     // unter der angegebenen Variable sicher:
-    @ModelAttribute("typ")
+    @ModelAttribute("mediaTypen")
     public Collection<MediaTyp> populateMediaTypes() {
         return this.mediaTypService.findAll();
     }
@@ -49,15 +49,15 @@ public class MediaController {
         this.kontaktService = kontaktService;
     }
 
-    @GetMapping("/medien/neu")
+    @GetMapping("/media/neu")
     public String initCreationForm(Kontakt kontakt, Model model) {
         Media media = new Media();
-        media.setKontakt(kontakt);
+        kontakt.getMediaSet().add(media);
         model.addAttribute("media", media);
         return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
     }
 
-    @PostMapping("/medien/neu")
+    @PostMapping("/media/neu")
     public String processCreationForm(Kontakt kontakt, @Valid Media media, BindingResult result, ModelMap model) {
         if (StringUtils.hasLength(media.getTitel()) && media.isNew() && kontakt.getMedia(media.getTitel(), true) != null){
             result.rejectValue("titel", "Duplikat", "existiert bereits");
@@ -68,9 +68,26 @@ public class MediaController {
             return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
         } else {
             mediaService.save(media);
-
             return "redirect:/kontakte/" + kontakt.getId();
         }
     }
 
+    @GetMapping("/medien/{mediaId}/aendern")
+    public String initUpdateForm(@PathVariable Long mediaId, Model model) {
+        model.addAttribute("media", mediaService.findById(mediaId));
+        return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
+    }
+
+    @PostMapping("/medien/{mediaId}/aendern")
+    public String processUpdateForm(@Valid Media media, BindingResult result, Kontakt kontakt, Model model) {
+        if (result.hasErrors()) {
+            media.setKontakt(kontakt);
+            model.addAttribute("media", media);
+            return VIEWS_MEDIEN_CREATE_OR_UPDATE_FORM;
+        } else {
+            kontakt.getMediaSet().add(media);
+            mediaService.save(media);
+            return "redirect:/kontakte/" + kontakt.getId();
+        }
+    }
 }

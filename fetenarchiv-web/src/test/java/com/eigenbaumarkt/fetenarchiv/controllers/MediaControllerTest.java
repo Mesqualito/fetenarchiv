@@ -44,15 +44,15 @@ public class MediaControllerTest {
     MockMvc mockMvc;
 
     Kontakt kontakt;
-    Set<MediaTyp> mediaTypeSet;
+    Set<MediaTyp> mediaTypSet;
 
     @BeforeEach
     void setUp() {
         kontakt = Kontakt.builder().id(1L).build();
 
-        mediaTypeSet = new HashSet<>();
-        mediaTypeSet.add(MediaTyp.builder().id(1L).titel("Filmdatei").build());
-        mediaTypeSet.add(MediaTyp.builder().id(2L).titel("Bilddatei").build());
+        mediaTypSet = new HashSet<>();
+        mediaTypSet.add(MediaTyp.builder().id(1L).titel("Filmdatei").build());
+        mediaTypSet.add(MediaTyp.builder().id(2L).titel("Bilddatei").build());
 
         mockMvc = MockMvcBuilders
                 .standaloneSetup(mediaController)
@@ -62,7 +62,7 @@ public class MediaControllerTest {
     @Test
     void initCreationForm() throws Exception {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
-        when(mediaTypService.findAll()).thenReturn(mediaTypeSet);
+        when(mediaTypService.findAll()).thenReturn(mediaTypSet);
 
         mockMvc.perform(get("/kontakte/1/medien/neu"))
                 .andExpect(status().isOk())
@@ -74,7 +74,7 @@ public class MediaControllerTest {
     @Test
     void processCreationForm() throws Exception {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
-        when(mediaTypService.findAll()).thenReturn(mediaTypeSet);
+        when(mediaTypService.findAll()).thenReturn(mediaTypSet);
 
         mockMvc.perform(post("/kontakte/1/medien/neu"))
                 .andExpect(status().is3xxRedirection())
@@ -86,20 +86,20 @@ public class MediaControllerTest {
     @Test
     void initUpdateForm() throws Exception {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
-        when(mediaTypService.findAll()).thenReturn(mediaTypeSet);
+        when(mediaTypService.findAll()).thenReturn(mediaTypSet);
         when(mediaService.findById(anyLong())).thenReturn(Media.builder().id(2L).build());
 
         mockMvc.perform(get("/kontakte/1/medien/2/aendern"))
                 .andExpect(status().isOk())
-                .andExpect(model().attributeExists("owner"))
-                .andExpect(model().attributeExists("pet"))
-                .andExpect(view().name("pets/createOrUpdatePetForm"));
+                .andExpect(model().attributeExists("kontakt"))
+                .andExpect(model().attributeExists("media"))
+                .andExpect(view().name("medien/mediaAnlegenOderUpdatenForm"));
     }
 
     @Test
     void processUpdateForm() throws Exception {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
-        when(mediaTypService.findAll()).thenReturn(mediaTypeSet);
+        when(mediaTypService.findAll()).thenReturn(mediaTypSet);
 
         mockMvc.perform(post("/kontakte/1/medien/2/aendern"))
                 .andExpect(status().is3xxRedirection())

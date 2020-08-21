@@ -36,8 +36,9 @@ public class Basis implements Serializable {
     @Column(name = "last_updated_stamp")
     private Timestamp lastUpdatedStamp;
 
-    // Exception evaluating SpringEL expression: "kontakt['neu']" (template: "kontakte/kontaktAnlegenOderUpdatenForm"
-    // Evaluierung für den Button "Kontakt neu" oder "Kontakt ändern" schlägt fehl ohne:
+    // Exception evaluating SpringEL expression: "kontakt['new']" (template: "kontakte/kontaktAnlegenOderUpdatenForm")
+    // bzw. 'th:if="${media['new']}"' (template: "medien/mediaAnlegenOderUpdatenForm.html")
+    // Evaluierung für die Buttons "... neu" oder "... ändern" schlägt fehl ohne:
     public boolean isNew() {
         return this.id == null;
     }
