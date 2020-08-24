@@ -58,7 +58,7 @@ public class TerminController {
     }
 
     // Spring MVC calls method loadMediaWithTermin(...) before initNewTerminForm is called
-    @GetMapping("/kontakte/*/medien/{petId}/termine/neu")
+    @GetMapping("/kontakte/*/medien/{mediaId}/termine/neu")
     public String initNewTerminForm(@PathVariable("mediaId") Long mediaId, Map<String, Object> model) {
         return "medien/terminAnlegenOderAendernForm";
     }

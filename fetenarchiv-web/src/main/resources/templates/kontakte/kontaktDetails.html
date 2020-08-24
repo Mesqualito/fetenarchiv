@@ -52,8 +52,8 @@
                     <td th:text="${termin?.titel}"></td>
                 </tr>
                 <tr>
-                    <td><a th:href="@{{kontaktId}/media/{mediaId}/aendern(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>
-                    <td><a th:href="@{{kontaktId}/media/{mediaId}/termine/neu(kontaktId=${kontakt.id},mediaId=${media.id})}">Termin hinzu fügen</a></td>
+                    <td><a th:href="@{{kontaktId}/medien/{mediaId}/aendern(kontaktId=${kontakt.id},mediaId=${media.id})}">Mediendatei ändern</a></td>
+                    <td><a th:href="@{{kontaktId}/medien/{mediaId}/termine/neu(kontaktId=${kontakt.id},mediaId=${media.id})}">Termin hinzu fügen</a></td>
                 </tr>
             </table>
         </td>
