@@ -11,7 +11,7 @@ Freiwilligen Feuerwehr Wenden (https://www.feuerwehrwenden.de).
 ---------------------------------------------
 
 Diese Programmierung orientiert sich am Kurs zur 'Spring Pet Clinic' von John Thompson
-(https://springframework.guru) in Udemy (https://www.udemy.com/spring-framework-5-beginner-to-guru).
+(https://springframework.guru) in Udemy (https://www.udemy.com/spring-framework-5-beginner-to-guru). Die Original-CircleCI-Builds sind unter https://app.circleci.com/pipelines/github/springframeworkguru/sfg-pet-clinic zu finden.
 
 Die Sourcen der ursprünglichen Programmierung sind zu finden unter https://github.com/springframeworkguru/sfg-pet-clinic.
 

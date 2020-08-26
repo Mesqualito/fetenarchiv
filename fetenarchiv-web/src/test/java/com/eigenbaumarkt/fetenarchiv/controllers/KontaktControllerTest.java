@@ -51,6 +51,19 @@ class KontaktControllerTest {
     }
 
     @Test
+    void processFindFormEmptyReturnMany() throws Exception {
+
+        when(kontaktService.findAllByLastNameLike(anyString())).thenReturn(Arrays.asList(Kontakt.builder().id(1L).build(),
+                Kontakt.builder().id(2L).build()));
+
+        mockMvc.perform(get("/kontakte")
+                .param("lastName", ""))
+                .andExpect(status().isOk())
+                .andExpect(view().name("kontakte/kontaktListe"))
+                .andExpect(model().attribute("auswahl", hasSize(2)));
+    }
+
+    @Test
     void findKontakte() throws Exception {
 
         mockMvc.perform(get("/kontakte/find"))
