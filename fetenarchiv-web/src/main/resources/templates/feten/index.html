@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="de" xmlns:th="http://www.thymeleaf.org" th:replace="~{fragments/layout :: layout (~{::body},'feten')}">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Fetenliste</title>
+</head>
+<body>
+<!--/*@thymesVar id="fete" type="com.eigenbaumarkt.fetenarchiv.model.Fete"*/-->
+<h2>Feten</h2>
+
+<table id="feten" class="table table-striped">
+    <thead>
+    <tr>
+        <th>Titel</th>
+        <th>Beschreibung</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="fete : ${feten}">
+        <td th:text="${fete.titel}"></td>
+        <td th:text="${fete.beschreibung}"></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
