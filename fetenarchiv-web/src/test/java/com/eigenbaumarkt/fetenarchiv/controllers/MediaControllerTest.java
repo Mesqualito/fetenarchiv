@@ -68,7 +68,7 @@ public class MediaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("kontakt"))
                 .andExpect(model().attributeExists("media"))
-                .andExpect(view().name("medien/mediaAnlegenOderUpdatenForm"));
+                .andExpect(view().name("medien/mediaAnlegenOderAendernForm"));
     }
 
     @Test
@@ -93,7 +93,7 @@ public class MediaControllerTest {
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("kontakt"))
                 .andExpect(model().attributeExists("media"))
-                .andExpect(view().name("medien/mediaAnlegenOderUpdatenForm"));
+                .andExpect(view().name("medien/mediaAnlegenOderAendernForm"));
     }
 
     @Test

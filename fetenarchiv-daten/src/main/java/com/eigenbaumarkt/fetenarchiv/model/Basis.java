@@ -37,7 +37,7 @@ public class Basis implements Serializable {
     private Timestamp lastUpdatedStamp;
 
     // Exception evaluating SpringEL expression: "kontakt['new']" (template: "kontakte/kontaktAnlegenOderUpdatenForm")
-    // bzw. 'th:if="${media['new']}"' (template: "medien/mediaAnlegenOderUpdatenForm.html")
+    // bzw. 'th:if="${media['new']}"' (template: "medien/mediaAnlegenOderAendernForm.html")
     // Evaluierung für die Buttons "... neu" oder "... ändern" schlägt fehl ohne:
     public boolean isNew() {
         return this.id == null;
