@@ -64,7 +64,7 @@ public class MediaControllerTest {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
         when(mediaTypService.findAll()).thenReturn(mediaTypSet);
 
-        mockMvc.perform(get("/kontakte/1/medien/neu"))
+        mockMvc.perform(get("/kontakte/1/media/neu"))
                 .andExpect(status().isOk())
                 .andExpect(model().attributeExists("kontakt"))
                 .andExpect(model().attributeExists("media"))
@@ -76,7 +76,7 @@ public class MediaControllerTest {
         when(kontaktService.findById(anyLong())).thenReturn(kontakt);
         when(mediaTypService.findAll()).thenReturn(mediaTypSet);
 
-        mockMvc.perform(post("/kontakte/1/medien/neu"))
+        mockMvc.perform(post("/kontakte/1/media/neu"))
                 .andExpect(status().is3xxRedirection())
                 .andExpect(view().name("redirect:/kontakte/1"));
 

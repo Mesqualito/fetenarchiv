@@ -9,6 +9,18 @@
         <version>0.0.5-SNAPSHOT</version>
     </parent>
     <artifactId>fetenarchiv-web</artifactId>
+
+    <properties>
+        <!-- Web dependencies for wro4j-maven-plugin -->
+        <!-- wro4j-maven-plugin only compatible until bootstrap 3.4.1 -->
+        <webjars-bootstrap.version>3.4.1</webjars-bootstrap.version>
+        <webjars-jquery-ui.version>1.11.4</webjars-jquery-ui.version>
+        <webjars-jquery.version>2.2.4</webjars-jquery.version>
+        <wro4j.version>1.8.0</wro4j.version>
+        <less4j.version>1.17.2</less4j.version>
+    </properties>
+
+
     <dependencies>
         <dependency>
             <artifactId>fetenarchiv-daten</artifactId>
@@ -59,10 +71,14 @@
             <scope>test</scope>
             <exclusions>
                 <exclusion>
-                    <groupId>junit</groupId>
-                    <artifactId>junit</artifactId>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
                 </exclusion>
             </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
         <dependency>
             <groupId>org.junit.jupiter</groupId>
@@ -90,14 +106,14 @@
                 <version>${wro4j.version}</version>
                 <executions>
                     <execution>
-                        <phase>compile</phase>
+                        <phase>generate-resources</phase>
                         <goals>
                             <goal>run</goal>
                         </goals>
                     </execution>
                 </executions>
                 <configuration>
-                    <contextPath>${project.basedir}</contextPath>
+                    <contextFolder>${project.basedir}/src/main/less</contextFolder>
                     <ignoreMissingResources>false</ignoreMissingResources>
                     <targetGroups>fetenarchiv</targetGroups>
                     <minimize>true</minimize>
@@ -113,10 +129,15 @@
                         <artifactId>bootstrap</artifactId>
                         <version>${webjars-bootstrap.version}</version>
                     </dependency>
-                    <dependency>
+                    <!--<dependency>
                         <groupId>com.github.sommeri</groupId>
                         <artifactId>less4j</artifactId>
                         <version>${less4j.version}</version>
+                    </dependency>-->
+                    <dependency>
+                        <groupId>org.mockito</groupId>
+                        <artifactId>mockito-core</artifactId>
+                        <version>2.28.2</version>
                     </dependency>
                 </dependencies>
             </plugin>
