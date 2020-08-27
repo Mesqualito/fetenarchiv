@@ -17,17 +17,19 @@ public class DataInitializer implements CommandLineRunner {
     private final MediaService mediaService;
     private final MediaTypService mediaTypService;
     private final TerminService terminService;
+    private final FeteService feteService;
 
 
     public DataInitializer(KontaktService kontaktService, AdresseService adresseService,
                            OrtService ortService, MediaService mediaService,
-                           MediaTypService mediaTypService, TerminService terminService) {
+                           MediaTypService mediaTypService, TerminService terminService, FeteService feteService) {
         this.kontaktService = kontaktService;
         this.adresseService = adresseService;
         this.ortService = ortService;
         this.mediaService = mediaService;
         this.mediaTypService = mediaTypService;
         this.terminService = terminService;
+        this.feteService = feteService;
     }
 
     @Override
@@ -138,5 +140,23 @@ public class DataInitializer implements CommandLineRunner {
         terminService.save(ersterTermin);
 
         System.out.println("Ein erster Termin zu einem Kontakt gesichert.");
+
+        Fete fete1 = new Fete();
+        fete1.setTitel("Die erste Feier!");
+        fete1.setBeschreibung("Ein schönes Treffen in den Toren des Steigerwaldes");
+        fete1.setKontakt(kontakt1);
+
+        feteService.save(fete1);
+
+        Fete fete2 = new Fete();
+        fete2.setTitel("Ein weiteres Treffen");
+        fete2.setBeschreibung("Wunderbare Stunden im Braunschweiger Land");
+        fete2.setKontakt(kontakt2);
+
+        feteService.save(fete2);
+
+        System.out.println("Zwei Feten angelegt...");
+
+
     }
 }

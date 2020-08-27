@@ -19,6 +19,11 @@
     <tr th:each="fete : ${feten}">
         <td th:text="${fete.titel}"></td>
         <td th:text="${fete.beschreibung}"></td>
+        <!-- um über zugeordnete Objekte zu iterieren:
+        <td><span th:each="tag : ${fete.tage}"
+                  th:text="${tage.datum + ' '}" /> <span
+                th:if="${tage?.datumSet?.size() == 0}">none</span></td>
+         -->
     </tr>
     </tbody>
 </table>
